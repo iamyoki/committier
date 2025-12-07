@@ -1,3 +1,28 @@
+## 0.0.5 (2025-12-07)
+
+### 🩹 Fixes
+
+- release incorrect ([2936fe6](https://github.com/iamyoki/committier/commit/2936fe6))
+
+### 📖 Documentation
+
+- finish docs ([c48889f](https://github.com/iamyoki/committier/commit/c48889f))
+- fix img src ([8e53da4](https://github.com/iamyoki/committier/commit/8e53da4))
+- up readme [skip ci] ([4f992ae](https://github.com/iamyoki/committier/commit/4f992ae))
+
+### 🏡 Chore
+
+- opt build size ([6faf535](https://github.com/iamyoki/committier/commit/6faf535))
+
+### 🤖 CI
+
+- fix release and docs error ([6431f94](https://github.com/iamyoki/committier/commit/6431f94))
+- fix linting error ([72fdd4b](https://github.com/iamyoki/committier/commit/72fdd4b))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.0.4 (2025-12-07)
 
 ### 🩹 Fixes
