@@ -32,7 +32,6 @@ export default function DefaultSearchDialog(props: SharedProps) {
     initOrama,
     locale,
   });
-  console.log(search, query);
 
   return (
     <SearchDialog

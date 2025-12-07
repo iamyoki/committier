@@ -1,2 +1,2 @@
 export const owner = "iamyoki";
-export const repo = "polyrepo-template";
+export const repo = "committier";

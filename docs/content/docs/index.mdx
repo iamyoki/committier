@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: A best practice template for managing single package and application in a repository. This template is designed to streamline development workflows, enforce consistent coding standards.
+description: Fix and Format commit messages.
 icon: Album
 ---
 
@@ -8,51 +8,53 @@ icon: Album
 
 <Cards>
 
-<Card icon={<AppWindow className="text-purple-300" />} title='App & Library'>
+<Card icon={<AppWindow className="text-purple-300" />} title='UX / DX Driven Design'>
 
-Develop both app and library under one repository, optionally distribute the library to npm or github packages regsitry.
-
-</Card>
-
-<Card icon={<CpuIcon className="text-blue-300" />} title='CI/CD Automation'>
-
-Automatically release versions, generate CHANGELOG, and publish packages via github workflows.
+Starting from a zero-configuration setup, we provide you with a beautiful and highly consistent commit message formatting.
 
 </Card>
 
-<Card icon={<Ruler className="text-green-300" />} title='Less config & Consistency'>
+<Card icon={<CpuIcon className="text-blue-300" />} title='Adhere conventioanl commits style'>
 
-Minimalist, professional, and practical. All toolchain are set ready for you.
+By default, it adheres to the Conventional Commits style. 
+Other convention styles can be added as plugins in the future.
 
 </Card>
 
-<Card icon={<BookText className="text-yellow-300" />} title='Docs'>
+<Card icon={<Ruler className="text-green-300" />} title='Compatible with commitlint'>
 
-Integrated Fumadocs to build your own beautiful docs site.
+Perfect and without conflict. Taking commit message quality to the next level.
+
+</Card>
+
+<Card icon={<Workflow className="text-yellow-300" />} title='Automatically format'>
+
+Automatically format once `git commit -m '...'`, see [Git hook setup](#git-hook)
+
+</Card>
+
+<Card icon={<PartyPopper className="text-red-300" />} title='Emojis'>
+
+Automatically add emojis and is customizable
+
+</Card>
+
+<Card icon={<Terminal className="text-slate-100" />} title='Commit CLI tool'>
+
+Includes a user-friendly [commit CLI tool](.)
 
 </Card>
 
 </Cards>
 
-## Toolchain
+## What is committier
 
-**Pacakge Managing**
+committier fixes and formats your git commit messages meet the [conventional commit format](https://conventionalcommits.org/). Unlike [commitlint](https://github.com/conventional-changelog/commitlint), it only attempts to format and fix formatting styles without performing strict rules validation. Similar to [Prettier](https://github.com/prettier/prettier/) and [ESLint](https://github.com/eslint/eslint), it integrates well with both.
 
-- PNPM
-- NX
+It does:
 
-**Code Quality**
-
-- Eslint
-- Prettier
-- Typescript
-- Node test runner
-
-**Commit Quality**
-
-- Husky
-- lint-staged
-- Commitlint
-- ConventionalCommits
-- Custom commit emoji script
-
+- Attemps to format and fix
+- Attemps to infer the type, scope, breaking change mark(!), description
+- Infer the scope from workspace package names
+- Remove extra spaces in the body and footer
+- And more...

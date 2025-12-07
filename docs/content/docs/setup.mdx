@@ -1,0 +1,62 @@
+---
+title: Setup
+icon: Cog
+---
+
+## Automatically Format
+
+To achieve automatically format once `git commit -m "..."` you need to setup commit-msg hook.
+
+### Using a git hooks manager
+
+[Checkout husky official documentation](https://typicode.github.io/husky/get-started.html)
+
+```sh
+pnpm add husky -D
+pnpm husky init
+```
+
+### Add hook
+
+Create or edit `.husky/commit-msg`, add `npx --no -- committier edit $1` before `commitlint`(if you have)
+
+```diff title=".husky/commit-msg"
++ npx --no -- committier edit $1
+npx --no -- commitlint --edit $1
+```
+
+<Callout>Note, there is no '--' before 'edit' command in committier but commitlint.</Callout>
+
+
+## Integrate commitlint
+
+[Checkout commitlint official documentation](https://commitlint.js.org/guides/getting-started.html)
+
+Once commitlint installed and setup, you are good to go! 
+
+But, if your enabled `autoEmoji: true` (default: true), [set an emoji parser](/docs/use-prompt#integrate-commitlint) is essential.
+
+
+## Test
+
+Use `committier format <message>` command for previewing a format.
+
+For example:
+
+```sh tab="case 1"
+pnpm committier format "feat add a button"
+```
+
+```sh tab="case 2"
+pnpm committier format "FEAT : add a button"
+```
+
+```sh tab="case 3"
+pnpm committier format "🐛FEAT : ADD a button"
+```
+
+Will showing:
+
+```sh
+✨ feat: add a button
+```

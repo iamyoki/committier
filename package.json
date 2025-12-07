@@ -6,9 +6,12 @@
     "git",
     "commit",
     "cli",
+    "committier",
     "commitlint",
     "conventional-commits",
-    "conventional-changelog"
+    "conventional-changelog",
+    "cz",
+    "commitizen"
   ],
   "homepage": "https://github.com/iamyoki/committier",
   "bugs": {

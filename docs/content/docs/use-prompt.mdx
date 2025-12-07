@@ -1,0 +1,75 @@
+---
+title: Use Prompt
+description: A built-in commit CLI tool for humanity
+icon: SquareTerminal
+---
+
+![](/commit.gif)
+
+## Usage
+
+```sh tab="npx"
+npx committier commit
+```
+
+```sh tab="yarn"
+yarn committier commit
+```
+
+```sh tab="pnpm"
+pnpm committier commit
+```
+
+```sh tab="global"
+committier commit
+```
+
+Optionally add a script in `package.json`, to map a shorter command for commit CLI
+
+```json
+{
+  "scripts": {
+    "commit": "committier commit"
+  }
+}
+```
+
+Then
+
+```sh
+pnpm commit
+```
+
+## Integrate commitlint
+
+Make sure **commitier** runs before [commitlint](https://github.com/conventional-changelog/commitlint)
+
+`.husky/commit-msg`
+
+```sh
+npx --no -- committier edit $1
+npx --no -- commitlint --edit $1
+```
+
+If your enabled `autoEmoji: true` (default: true), make sure to set our `commitlintEmojiParser`, because commitlint doesn't accept any emoji by default.
+
+`commitlint.config.js`
+
+```js
+import { commitlintEmojiParser } from "committier/commitlint-emoji-parser"";
+
+export default {
+  extends: ["@commitlint/config-conventional"],
+  parserPreset: commitlintEmojiParser,
+};
+```
+
+## Smart with Config
+
+This CLI works well with your configuration. It infers necessary configs to simplify the prompt steps.
+
+For example, if `autoScope: true`, the prompt will not ask you to input a `scope` string, it will automatically infers the workspace package names. If `autoScope: "defaultToPackageName"` set, it will ask you to input a scope but not required.
+
+<Card href="/docs/configuration" title="Learn More">
+  Configuration reference
+</Card>

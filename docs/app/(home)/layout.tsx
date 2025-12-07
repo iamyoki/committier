@@ -7,5 +7,6 @@ export default function Layout({ children }: LayoutProps<"/">) {
 }
 
 export const metadata: Metadata = {
-  title: "Polyrepo Template",
+  title: "committier",
+  description: "Fix and Format commit messages.",
 };

@@ -8,10 +8,11 @@ Fix and Format commit messages.
 
 ## Features
 
+- UX / DX driven design
 - Adhere conventioanl commits style
 - Compatible with [commitlint](https://github.com/conventional-changelog/commitlint)
 - Automatically format once `git commit -m '...'`, see [Git hook setup](#git-hook)
-- Automatically adds emojis and is customizable
+- Automatically add emojis and is customizable
 - Includes a user-friendly commit CLI tool
 
 ## What is committier
@@ -110,7 +111,7 @@ pnpm commit
 
 ## Integrate [commitlint](https://github.com/conventional-changelog/commitlint)
 
-Make sure **commitier** runs before before **commitlint**
+Make sure **commitier** runs before **commitlint**
 
 `.husky/commit-msg`
 
@@ -124,7 +125,7 @@ If your enabled `autoEmoji: true` (default: true), make sure to set our `commitl
 `commitlint.config.js`
 
 ```js
-import { commitlintEmojiParser } from "committier";
+import { commitlintEmojiParser } from "committier/commitlint-emoji-parser"";
 
 export default {
   extends: ["@commitlint/config-conventional"],

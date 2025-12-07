@@ -1,0 +1,121 @@
+---
+title: Configuration
+---
+
+## Config via file
+
+`commitier` picks up configuration from the following files:
+
+- `.commitierrc`
+- `.commitierrc.json`
+- `.commitierrc.yaml`
+- `.commitierrc.yml`
+- `.commitierrc.js`
+- `.commitierrc.cjs`
+- `.commitierrc.mjs`
+- `.commitierrc.ts`
+- `.commitierrc.cts`
+- `commitier.config.js`
+- `commitier.config.cjs`
+- `commitier.config.mjs`
+- `commitier.config.ts`
+- `commitier.config.cts`
+
+Configuration files are resolved using [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig).
+
+## Config via `package.json`
+
+You can add a `committier` field in `package.json`
+
+## Config Example
+
+Create a `.committerrc.json` file at root, you can partially add fields to override the [default config](#default-config).
+
+```json title=".commitierrc.json"
+{
+  "autoEmoji": true,
+  "autoScope": true,
+  "defaultType": "fix",
+  "types": {...}
+}
+```
+
+## Default Config
+
+```json
+{
+  "autoEmoji": true, // boolean
+  "autoScope": true, // boolean | 'replaceToPackageName' | 'defaultToPackageName'
+  "defaultType": "fix",
+  "types": {
+    "feat": {
+      "emoji": "✨",
+      "title": "Feature",
+      "description": "A new feature"
+    },
+    "fix": {
+      "emoji": "🐛",
+      "title": "Bug Fixes",
+      "description": "A bug fix"
+    },
+    "refactor": {
+      "emoji": "♻️",
+      "title": "Code Refactoring",
+      "description": "A code change that neither fixes a bug nor adds a feature"
+    },
+    "perf": {
+      "emoji": "⚡️",
+      "title": "Performance Improvements",
+      "description": "A code change that improves performance"
+    },
+    "chore": {
+      "emoji": "🎨",
+      "title": "Chores",
+      "description": "Other changes that don't modify src or test files",
+      "scopes": [
+        {
+          "match": "release",
+          "emoji": "🚀",
+          "title": "Release",
+          "description": "A new release"
+        }
+      ]
+    },
+    "test": {
+      "emoji": "🧪",
+      "title": "Tests",
+      "description": "Adding missing tests or correcting existing tests"
+    },
+    "style": {
+      "emoji": "💄",
+      "title": "Styles",
+      "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+    },
+    "docs": {
+      "emoji": "📝",
+      "title": "Documentation",
+      "description": "Documentation only changes"
+    },
+    "revert": {
+      "emoji": "➖",
+      "title": "Reverts",
+      "description": "Reverts a previous commit"
+    },
+    "build": {
+      "emoji": "📦️",
+      "title": "Builds",
+      "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"
+    },
+    "ci": {
+      "emoji": "👷",
+      "title": "Continuous Integrations",
+      "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"
+    },
+    "breakingChange": {
+      "emoji": "💥",
+      "title": "Breaking Changes",
+      "description": "Introduce breaking changes."
+    }
+  }
+}
+```
