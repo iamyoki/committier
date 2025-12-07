@@ -1,4 +1,4 @@
-# <img src="./icon.png" alt="icon" height="20px" /> committier
+# <img src="./.github/icon-rect.png" alt="icon" height="20px" /> committier
 
 Format and auto-fix commit messages.
 
