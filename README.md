@@ -10,7 +10,7 @@ Fix and Format commit messages.
 
 - Adhere conventioanl commits style
 - Compatible with [commitlint](https://github.com/conventional-changelog/commitlint)
-- Automatically format once `git commit -m '...'`, see [Git hook setup](#git-hook-setup)
+- Automatically format once `git commit -m '...'`, see [Git hook setup](#git-hook)
 - Automatically adds emojis and is customizable
 - Includes a user-friendly commit CLI tool
 
@@ -30,13 +30,35 @@ It does:
 
 `pnpm add committier -D`
 
-`yarn add committier -D`
+Or `yarn add committier -D`
 
-`npm i committier -D`
+Or `npm i committier -D`
 
 Or install globally `pnpm add -g committier`
 
-## Git hook setup
+Or directly execute `pnpm dlx committier <command>` / `npx committier <command>`
+
+## Usage
+
+- CLI
+  - [format](#format)
+  - [edit](#git-hook)
+  - [commit](#commit-tool)
+- [Integrate commitlint](#integrate-commitlint)
+- Module API
+  - [FormatUseCase](.)
+  - [EditUseCase](.)
+  - [CommitCLI](.)
+
+## Format
+
+`committier format <message>`
+
+Format and preview the message
+
+## Git hook
+
+`committier edit <file>`
 
 ### Using a git hooks manager
 
@@ -49,16 +71,18 @@ pnpm husky init
 
 ### Add hook
 
-Edit `.husky/commit-msg`
+Edit `.husky/commit-msg`, add `npx --no -- committier edit $1`
 
-```sh
-npx --no -- committier edit $1
+```diff
++ npx --no -- committier edit $1
 npx --no -- commitlint --edit $1
 ```
 
 > Note, there is no '--' before 'edit' command in committier but commitlint.
 
-## Commit CLI tool
+## Commit tool
+
+`committier commit`
 
 <p align="center">
   <img width="600" src=".images/commit.gif" alt="commit cli" />
@@ -68,10 +92,14 @@ npx --no -- commitlint --edit $1
 pnpm committier commit
 ```
 
-Or you can add a script in `package.json` scripts
+Or you can add a script in `package.json`
 
 ```json
-"commit": "committier commit"
+{
+  "scripts": {
+    "commit": "committier commit"
+  }
+}
 ```
 
 Then
@@ -80,18 +108,42 @@ Then
 pnpm commit
 ```
 
+## Integrate [commitlint](https://github.com/conventional-changelog/commitlint)
+
+Make sure **commitier** runs before before **commitlint**
+
+`.husky/commit-msg`
+
+```sh
+npx --no -- committier edit $1
+npx --no -- commitlint --edit $1
+```
+
+If your enabled `autoEmoji: true` (default: true), make sure to set our `commitlintEmojiParser`, because commitlint doesn't accept any emoji by default.
+
+`commitlint.config.js`
+
+```js
+import { commitlintEmojiParser } from "committier";
+
+export default {
+  extends: ["@commitlint/config-conventional"],
+  parserPreset: commitlintEmojiParser,
+};
+```
+
 ## API
 
 ## Config
 
-`.committerrc.json`
+Create a `.committerrc.json` file at root, you can partially add fields to override the default config.
 
 Default config:
 
 ```json
 {
-  "autoEmoji": true,
-  "autoScope": true,
+  "autoEmoji": true, // boolean
+  "autoScope": true, // boolean | 'replaceToPackageName' | 'defaultToPackageName'
   "defaultType": "fix",
   "types": {
     "feat": {
