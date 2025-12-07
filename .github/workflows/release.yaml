@@ -87,6 +87,7 @@ jobs:
           pnpm pkg set name=committier
           pnpm publish --provenance --access public --registry https://registry.npmjs.org/
         shell: bash
+        continue-on-error: true
         env:
           NPM_CONFIG_PROVENANCE: true
 
