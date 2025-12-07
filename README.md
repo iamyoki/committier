@@ -61,7 +61,7 @@ npx --no -- commitlint --edit $1
 ## Commit CLI tool
 
 <p align="center">
-  <img width="800" src=".images/commit.gif" alt="commit cli" />
+  <img width="600" src=".images/commit.gif" alt="commit cli" />
 </p>
 
 ```sh
@@ -71,7 +71,7 @@ pnpm committier commit
 Or you can add a script in `package.json` scripts
 
 ```json
-"committier": "committier commit"
+"commit": "committier commit"
 ```
 
 Then
@@ -91,7 +91,7 @@ Default config:
 ```json
 {
   "autoEmoji": true,
-  "autoScope": "replaceToPackageName",
+  "autoScope": true,
   "defaultType": "fix",
   "types": {
     "feat": {
