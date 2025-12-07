@@ -85,7 +85,7 @@ jobs:
       - name: Publish to npm packages
         run: |
           pnpm pkg set name=committier
-          npx nx release publish
+          pnpm publish --provenance --access public
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
