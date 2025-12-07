@@ -72,7 +72,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish github packages
+      - name: Publish to github packages
         run: |
           pnpm pkg set name=@iamyoki/committier
           npx nx release publish
@@ -80,6 +80,15 @@ jobs:
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm packages
+        run: |
+          pnpm pkg set name=committier
+          npx nx release publish
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Get tag
         id: tag
