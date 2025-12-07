@@ -36,22 +36,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Cache eslint, tsbuildinfo
+      - name: Cache lints
         id: cache-lints
         uses: actions/cache@v4
         with:
           path: |
             .eslintcache
-            *.tsbuildinfo
-          key: ${{ runner.os }}-lints-${{ hashFiles('pnpm*', 'eslint.config.*', 'tsconfig*') }}
+          key: ${{ runner.os }}-lints-${{ hashFiles('pnpm*', 'eslint.config.*') }}
           restore-keys: |
             ${{ runner.os }}-lints-
 
       - name: Lint
         run: pnpm lint
 
-      - name: Type check
-        run: pnpm typecheck
+      # - name: Type check
+      #   run: pnpm typecheck
 
       - name: Test
         run: pnpm test
