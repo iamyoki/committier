@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "[mdx]": {
     "editor.defaultFormatter": "unifiedjs.vscode-mdx"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
   }
 }

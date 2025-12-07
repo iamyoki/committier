@@ -1,0 +1,8 @@
+<svg width="800" height="800" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" />
+  <text x="50%" y="50%" font-size="90px" fill="oklch(.7 0.4 140)" stroke-width="3px" stroke-linejoin="round"
+    stroke-linecap="butt" stroke-miterlimit="2" font-family="Cascadia Code NF" text-anchor="middle"
+    dominant-baseline="central">
+    ⚡︎
+  </text>
+</svg>
