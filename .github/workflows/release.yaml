@@ -15,6 +15,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -65,8 +66,17 @@ jobs:
         run: npx nx report
         shell: bash
 
+      - name: Release
+        run: npx nx release --skip-publish
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish github packages
-        run: npx nx release
+        run: |
+          pnpm pkg set name=@iamyoki/committier
+          npx nx release publish
+          pnpm pkg set name=committier
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

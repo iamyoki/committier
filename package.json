@@ -30,7 +30,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "committier": "./dist/bin/committier.js"
+    "committier": "dist/bin/committier.js"
   },
   "files": [
     "./dist",
