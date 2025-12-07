@@ -1,6 +1,6 @@
 {
   "name": "committier",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Format and auto-fix commit messages",
   "keywords": [
