@@ -1,4 +1,5 @@
 import type { FormatRuleInterface } from "../../../domain/interfaces/format-rule.interface.ts";
+import type { ConfigType } from "../../types/config.type.ts";
 import type { ConventionalCommitMessageParsedDataType } from "../../types/conventional-commit-message-parsed-data.type.ts";
 
 /**Default fallback to "fix" */
@@ -11,12 +12,14 @@ export class FallbackTypeRule
 {
   ruleName: string = "fallbackType";
 
-  constructor(
-    private readonly options: FallbackTypeRuleOptions = { defaultType: "fix" },
-  ) {}
+  constructor(private readonly config: ConfigType) {}
 
   apply(parsedData: ConventionalCommitMessageParsedDataType): void {
     const { header } = parsedData;
-    header.type ||= this.options.defaultType;
+    header.type ||= this.config.defaultType;
+    if (!(header.type in this.config.types)) {
+      header.description = `${header.type} ${header.description}`;
+      header.type = this.config.defaultType;
+    }
   }
 }

@@ -1,18 +1,83 @@
-# <img src="https://github.com/iamyoki/committier/blob/main/.github/icon-rect.png?raw=true" alt="icon" height="20px" /> committier
+# <img src=".images/icon-rect.png" alt="icon" height="20px" /> committier
 
-Format and auto-fix commit messages.
+Fix and Format commit messages.
+
+<p align="center">
+  <img width="600" src=".images/demo.gif" alt="demo" />
+</p>
+
+## Features
+
+- Adhere conventioanl commits style
+- Compatible with [commitlint](https://github.com/conventional-changelog/commitlint)
+- Automatically format once `git commit -m '...'`, see [Git hook setup](#git-hook-setup)
+- Automatically adds emojis and is customizable
+- Includes a user-friendly commit CLI tool
+
+## What is committier
+
+committier fixes and formats your git commit messages meet the [conventional commit format](https://conventionalcommits.org/). Unlike [commitlint](https://github.com/conventional-changelog/commitlint), it only attempts to format and fix formatting styles without performing strict rules validation. Similar to [Prettier](https://github.com/prettier/prettier/) and [ESLint](https://github.com/eslint/eslint), it integrates well with both.
+
+It does:
+
+- Attemps to format and fix
+- Attemps to infer the type, scope, breaking change mark(!), description
+- Infer the scope from workspace package names
+- Remove extra spaces in the body and footer
+- And more...
 
 ## Install
 
 `pnpm add committier -D`
 
-## Usage
+`yarn add committier -D`
+
+`npm i committier -D`
+
+Or install globally `pnpm add -g committier`
+
+## Git hook setup
+
+### Using a git hooks manager
+
+[Checkout husky official documentation](https://typicode.github.io/husky/get-started.html)
+
+```sh
+pnpm add husky -D
+pnpm husky init
+```
+
+### Add hook
 
 Edit `.husky/commit-msg`
 
-```diff
+```sh
 npx --no -- committier edit $1
 npx --no -- commitlint --edit $1
+```
+
+> Note, there is no '--' before 'edit' command in committier but commitlint.
+
+## Commit CLI tool
+
+<p align="center">
+  <img width="800" src=".images/commit.gif" alt="commit cli" />
+</p>
+
+```sh
+pnpm committier commit
+```
+
+Or you can add a script in `package.json` scripts
+
+```json
+"committier": "committier commit"
+```
+
+Then
+
+```sh
+pnpm commit
 ```
 
 ## API
@@ -25,8 +90,9 @@ Default config:
 
 ```json
 {
-  "autoEmoji": "replace",
+  "autoEmoji": true,
   "autoScope": "replaceToPackageName",
+  "defaultType": "fix",
   "types": {
     "feat": {
       "emoji": "✨",

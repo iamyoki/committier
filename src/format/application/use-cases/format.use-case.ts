@@ -15,10 +15,10 @@ export class FormatUseCase {
     const rules = [
       new TypeCaseRule(),
       new ScopeCaseRule(),
-      new FallbackTypeRule(),
+      new FallbackTypeRule(this.config),
       new DescriptionCaseRule(),
       new DescriptionNoBreaksRule(),
-      new EmojiRule("replace", this.config),
+      new EmojiRule(this.config),
     ];
 
     const parser = new ConventionalCommitMessageParser();

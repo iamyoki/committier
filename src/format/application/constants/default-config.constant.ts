@@ -1,8 +1,9 @@
 import type { ConfigType } from "../types/config.type.ts";
 
 export const DefaultConfig: ConfigType = {
-  autoEmoji: "replace",
+  autoEmoji: true,
   autoScope: "replaceToPackageName",
+  defaultType: "fix",
   types: {
     feat: {
       emoji: "✨",

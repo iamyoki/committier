@@ -25,7 +25,8 @@ type Type = {
 };
 
 export type ConventionalCommitMessageConfigType = {
-  autoEmoji: boolean | "replace" | "default";
+  autoEmoji: boolean;
   autoScope: boolean | "replaceToPackageName" | "defaultToPackageName";
+  defaultType: string;
   types: Record<TypeKey, Type>;
 };

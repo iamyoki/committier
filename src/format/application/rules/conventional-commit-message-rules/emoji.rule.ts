@@ -1,5 +1,5 @@
 import type { FormatRuleInterface } from "../../../domain/interfaces/format-rule.interface.ts";
-import type { ConventionalCommitMessageConfigType } from "../../types/conventional-commit-message-config.type.ts";
+import type { ConfigType } from "../../types/config.type.ts";
 import type { ConventionalCommitMessageParsedDataType } from "../../types/conventional-commit-message-parsed-data.type.ts";
 
 export type EmojiRuleOptions =
@@ -14,25 +14,16 @@ export class EmojiRule
 {
   ruleName: string = "emoji";
 
-  constructor(
-    private readonly options: EmojiRuleOptions = "replace",
-    private readonly config: ConventionalCommitMessageConfigType,
-  ) {}
+  constructor(private readonly config: ConfigType) {}
 
   apply(parsedData: ConventionalCommitMessageParsedDataType): void {
     const { header } = parsedData;
 
-    const type =
-      this.config.types[
-        header.type as keyof ConventionalCommitMessageConfigType["types"]
-      ];
+    const type = this.config.types[header.type as keyof ConfigType["types"]];
 
     if (!type) return;
 
-    if (
-      this.options === "replace" ||
-      (this.options === "fallback" && !header.emoji)
-    ) {
+    if (this.config.autoEmoji && !header.emoji) {
       header.emoji = type.emoji;
       if (type.scopes) {
         for (const scope of type.scopes) {

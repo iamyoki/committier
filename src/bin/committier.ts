@@ -23,11 +23,7 @@ yargs()
   .usage(
     `${pc.greenBright("⚡︎$0")}
 
-${pc.dim(pc.greenBright("Format and auto-fix commit messages."))}
-${pc.dim(pc.greenBright(`e.g. some issues               -> 🐛 fix: some issues`))}
-${pc.dim(pc.greenBright(`e.g. app1, some issues         -> 🐛 fix(app1): some issues`))}
-${pc.dim(pc.greenBright(`e.g. 💎feAt add button         -> ✨ feat: add button`))}
-${pc.dim(pc.greenBright(`e.g. FEAT app1,App2 Add button -> ✨ feat(app1,app2): add button`))}`,
+${pc.dim(pc.greenBright("Fix and Format commit messages."))}`,
   )
   .alias("v", "version")
   .alias("h", "help")
