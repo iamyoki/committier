@@ -1,3 +1,19 @@
+## 0.0.4 (2025-12-07)
+
+### 🩹 Fixes
+
+- exports, up readme ([68da62c](https://github.com/iamyoki/committier/commit/68da62c))
+
+### 🤖 CI
+
+- release ([b56ad19](https://github.com/iamyoki/committier/commit/b56ad19))
+- fix release ([bad11fe](https://github.com/iamyoki/committier/commit/bad11fe))
+- enable provenance ([93153de](https://github.com/iamyoki/committier/commit/93153de))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.0.3 (2025-12-07)
 
 ### 🩹 Fixes
