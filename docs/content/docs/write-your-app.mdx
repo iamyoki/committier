@@ -1,0 +1,35 @@
+---
+title: Project Structure
+---
+
+import { Files, Folder, File } from "fumadocs-ui/components/files";
+
+## Overview
+
+<Files>
+  <Folder name=".(root)" defaultOpen>
+
+    <Folder name="src" defaultOpen>
+      <Folder name="app" defaultOpen>
+        <File name="main.ts" />
+      </Folder>
+      <Folder name="lib" defaultOpen>
+        <File name="index.ts" />
+      </Folder>
+    </Folder>
+
+    <Folder name="test">
+    </Folder>
+    <Folder name="scripts">
+    </Folder>
+    <span className="ml-2">...</span>
+
+  </Folder>
+</Files>
+
+| Path               | Description                |
+| ------------------ | -------------------------- |
+| `src/`             | Source code                |
+| `src/app/main.ts`  | The app entry file         |
+| `src/lib/index.ts` | The lib pacakge entry file |
+| `test/`            | Unit testing               |

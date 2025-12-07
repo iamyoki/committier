@@ -1,0 +1,82 @@
+name: Manual publish
+
+run-name: 🚀 Publish by ${{ github.actor }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: fregante/setup-git-user@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@iamyoki"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Cache eslint, tsbuildinfo
+        id: cache-lints
+        uses: actions/cache@v4
+        with:
+          path: |
+            .eslintcache
+            *.tsbuildinfo
+          key: ${{ runner.os }}-lints-${{ hashFiles('pnpm*', 'eslint.config.*', 'tsconfig*') }}
+          restore-keys: |
+            ${{ runner.os }}-lints-
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Pack
+        run: pnpm pack
+
+      - name: Print Environment Info
+        run: npx nx report
+        shell: bash
+
+      - name: Publish github packages
+        run: npx nx release publish
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Get tag
+      #   id: tag
+      #   run: |
+      #     TAG_NAME=$(git tag --sort=v:refname | tail -1)
+      #     echo TAG_NAME=$TAG_NAME >> $GITHUB_OUTPUT
+
+      # - name: Upload release assets
+      #   uses: softprops/action-gh-release@v2
+      #   if: ${{ steps.tag.outputs.TAG_NAME }}
+      #   with:
+      #     tag_name: ${{ steps.tag.outputs.TAG_NAME }}
+      #     files: "*.tgz"
+      #     overwrite_files: false

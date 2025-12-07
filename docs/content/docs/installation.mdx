@@ -1,0 +1,37 @@
+---
+title: Installation
+description: Click "Use this template" on github or git clone manually
+icon: Zap
+---
+
+## Use this Template (Option 1)
+
+[Go to github repo](https://github.com/iamyoki/polyrepo-template), click "Use this template" -> "Create a new repository"
+
+![use-this-template](/use-this-template.png)
+
+## Git Clone (Option 2)
+
+```bash
+git clone --depth=1 https://github.com/iamyoki/polyrepo-template [your-project-name]
+```
+
+<Callout>--depth=1 will only fetch one commit.</Callout>
+
+## Git Clone Empty (Option 3)
+
+If you don't need commit history from the template, you can remove **.git/** directory and init an empty one.
+It's useful if you don't want cause any un-expected release by github workflows.
+
+```bash
+git clone https://github.com/iamyoki/polyrepo-template [your-project-name]
+```
+
+```bash
+cd [your-project-name]
+```
+
+```bash
+rm -rf .git
+git init
+```

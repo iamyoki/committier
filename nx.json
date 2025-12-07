@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "release": {
+    "projects": ["*"],
+    "version": { "conventionalCommits": true },
+    "conventionalCommits": {
+      "types": {
+        "feat": true,
+        "fix": true,
+        "chore": { "semverBump": "none" },
+        "style": { "semverBump": "none" },
+        "test": { "semverBump": "none" },
+        "build": true,
+        "ci": { "semverBump": "none" },
+        "docs": { "semverBump": "none" },
+        "perf": true,
+        "refactor": true,
+        "revert": true
+      }
+    },
+    "changelog": {
+      "workspaceChangelog": { "createRelease": "github" }
+    }
+  }
+}
