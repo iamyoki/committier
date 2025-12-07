@@ -1,3 +1,24 @@
+## 0.0.3 (2025-12-07)
+
+### 🩹 Fixes
+
+- some rules and up readme ([e9e010e](https://github.com/iamyoki/committier/commit/e9e010e))
+
+### 📖 Documentation
+
+- up readme ([5a9e077](https://github.com/iamyoki/committier/commit/5a9e077))
+
+### 🤖 CI
+
+- fix release ([fe40f35](https://github.com/iamyoki/committier/commit/fe40f35))
+- fix package ([511e6a8](https://github.com/iamyoki/committier/commit/511e6a8))
+- up release ([38c33f3](https://github.com/iamyoki/committier/commit/38c33f3))
+- fix release ([13e0d03](https://github.com/iamyoki/committier/commit/13e0d03))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.0.2 (2025-12-07)
 
 ### 🩹 Fixes
