@@ -1,6 +1,21 @@
 # <img src=".images/icon-rect.png" alt="icon" height="20px" /> committier
 
-Fix and Format commit messages.
+<p align="center">
+
+[![Release](https://github.com/iamyoki/committier/actions/workflows/release.yaml/badge.svg)](https://github.com/iamyoki/committier/actions/workflows/release.yaml)
+[![Docs](https://github.com/iamyoki/committier/actions/workflows/docs.yaml/badge.svg)](https://github.com/iamyoki/committier/actions/workflows/docs.yaml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fiamyoki.github.io%2Fcommittier%2F&up_message=docs&logo=next.js&label=committier)](https://iamyoki.github.io/committier/)
+[![NPM Version (with dist tag)](https://img.shields.io/npm/v/committier/latest?logo=npm&logoColor=white&labelColor=orangered)](https://www.npmjs.com/package/committier)
+
+</p>
+
+<p align="center">
+  Fix and Format commit messages.
+</p>
+
+<p align="center">
+<a href="https://iamyoki.github.io/committier/" target="_blank">Check out the website 🔗</a>
+</p>
 
 <p align="center">
   <img width="600" src=".images/demo.gif" alt="demo" />
