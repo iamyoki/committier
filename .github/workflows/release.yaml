@@ -84,13 +84,10 @@ jobs:
 
       - name: Publish to npm packages
         run: |
-          pnpm config list
-          cat .npmrc
           pnpm pkg set name=committier
           pnpm publish --provenance --access public --registry https://registry.npmjs.org/
         shell: bash
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
 
       - name: Get tag
