@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import demo from "../../public/demo.gif";
 
 export default function HomePage() {
   return (
@@ -58,7 +59,7 @@ export default function HomePage() {
         </div>
 
         <div className="max-md:p-12">
-          <Image width={600} height={300} alt="demo" src="/demo.gif" />
+          <Image width={600} height={300} alt="demo" src={demo} />
         </div>
       </div>
     </div>
