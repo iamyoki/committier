@@ -50,7 +50,7 @@ export default function HomePage() {
           <div className="flex flex-col ml-[-10] sm:flex-row gap-4 mt-8">
             <Link
               href="/docs"
-              className="w-full sm:w-auto px-5 py-3 hover:bg-fd-secondary hover:text-fd-primary text-fd-foreground rounded-full transition-all flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto px-5 py-3 font-bold hover:bg-fd-secondary hover:text-fd-primary text-fd-foreground rounded-full transition-all flex items-center justify-center gap-2 group"
             >
               Get Started
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
