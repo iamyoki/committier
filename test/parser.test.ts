@@ -1,4 +1,4 @@
-import { ConventionalCommitMessageParser } from "../src/format/application/parsers/conventional-commit-message.parser.ts";
+import { ConventionalCommitMessageParser } from "../src/application/parsers/conventional-commit-message.parser.ts";
 
 const parser = new ConventionalCommitMessageParser();
 
