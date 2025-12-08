@@ -8,7 +8,9 @@ export class DescriptionCaseRule
 
   apply(parsedData: ConventionalCommitMessageParsedDataType): void {
     const { header } = parsedData;
-    header.description =
-      header.description[0]?.toLowerCase() + header.description.slice(1);
+    if (header.description) {
+      header.description =
+        header.description[0]?.toLowerCase() + header.description.slice(1);
+    }
   }
 }

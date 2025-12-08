@@ -44,7 +44,7 @@ export class ConventionalCommitMessageParser
     str = str.slice(emoji?.length).trimStart();
 
     // type
-    r = /^(\w+)[ (:]/;
+    r = /^(\w+)(?:[ (:]|$)/;
     m = str.match(r);
     const type = m?.[1];
     // if (!type) throw new Error("Missing header type");
@@ -52,7 +52,7 @@ export class ConventionalCommitMessageParser
 
     // scope
     // r = /^(([\w,]+)|(\(.+)\))[ :!]/;
-    r = /^((\w+,(\w+,?)*)|.+(?=[:!])|(\(.+)\))[ :!]/;
+    r = /^((\(.+\))|(\w+,(\w+,?)*)|.+(?=[:!]))[ :!]/;
     m = str.match(r);
     const scopeStr = m?.[1];
     const scope = scopeStr
@@ -72,7 +72,8 @@ export class ConventionalCommitMessageParser
 
     // description
     const descStartIndex = str.match(/\p{L}/u)?.index;
-    const description = str.slice(descStartIndex);
+    const description =
+      descStartIndex !== undefined ? str.slice(descStartIndex) : "";
     // if (!description) throw new Error("Missing header description");
 
     return {

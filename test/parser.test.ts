@@ -13,3 +13,5 @@ console.log(parser.parse("add new feature"));
 console.log(parser.parse("!add new feature"));
 console.log(parser.parse("app1,app2 add new feature"));
 console.log(parser.parse("feat: committier edit"));
+console.log(parser.parse("feat:"));
+console.log(parser.parse("feat"));
