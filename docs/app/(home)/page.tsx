@@ -13,7 +13,7 @@ export default function HomePage() {
         <div className="flex flex-col items-start max-lg:items-center">
           {/* Announcement Banner */}
           <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-fd-primary/10 
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fd-card border border-fd-primary/10 
           text-fd-primary text-sm mb-4"
           >
             <Link
@@ -50,7 +50,7 @@ export default function HomePage() {
           <div className="flex flex-col ml-[-10] sm:flex-row gap-4 mt-8">
             <Link
               href="/docs"
-              className="w-full sm:w-auto px-5 py-3 hover:bg-fd-secondary hover:text-fd-primary text-white rounded-full transition-all flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto px-5 py-3 hover:bg-fd-secondary hover:text-fd-primary text-fd-foreground rounded-full transition-all flex items-center justify-center gap-2 group"
             >
               Get Started
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
