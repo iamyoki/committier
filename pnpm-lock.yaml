@@ -60,9 +60,6 @@ importers:
       '@types/yargs':
         specifier: ^17.0.35
         version: 17.0.35
-      chalk:
-        specifier: ^5.6.2
-        version: 5.6.2
       del-cli:
         specifier: ^7.0.0
         version: 7.0.0
@@ -90,9 +87,6 @@ importers:
       prettier-plugin-packagejson:
         specifier: ^2.5.19
         version: 2.5.20(prettier@3.6.2)
-      prompts:
-        specifier: ^2.4.2
-        version: 2.4.2
       tmp:
         specifier: ^0.2.5
         version: 0.2.5
@@ -2436,10 +2430,6 @@ packages:
   pretty-format@30.2.0:
     resolution: {integrity: sha512-9uBdv/B4EefsuAL+pWqueZyZS2Ba+LxfFeQ9DN14HU4bN8bhaxKdkpjpB6fs9+pSjIBu+FXQHImEg8j/Lw0+vA==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
-
-  prompts@2.4.2:
-    resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
-    engines: {node: '>= 6'}
 
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
@@ -5577,11 +5567,6 @@ snapshots:
       '@jest/schemas': 30.0.5
       ansi-styles: 5.2.0
       react-is: 18.3.1
-
-  prompts@2.4.2:
-    dependencies:
-      kleur: 3.0.3
-      sisteransi: 1.0.5
 
   proxy-from-env@1.1.0: {}
 
