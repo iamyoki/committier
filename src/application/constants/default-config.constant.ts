@@ -2,7 +2,7 @@ import type { ConfigType } from "../types/config.type.ts";
 
 export const DefaultConfig: ConfigType = {
   autoEmoji: true,
-  autoScope: "replaceToPackageName",
+  autoScope: false,
   defaultType: "fix",
   types: {
     feat: {
@@ -77,4 +77,4 @@ export const DefaultConfig: ConfigType = {
       description: "Introduce breaking changes.",
     },
   },
-};
+} as const;
