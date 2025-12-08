@@ -1,16 +1,22 @@
-export async function commitlintEmojiParser() {
+export function commitlintEmojiParser() {
   return {
     conventionalChangelog: {
-      headerPattern: /^(?:\S+? )?(\w*)(?:\((.*)\))?!?: (.*)$/,
-      breakingHeaderPattern: /^(?:\S+? )?(\w*)(?:\((.*)\))?!: (.*)$/,
+      headerPattern:
+        /^(?:\p{Emoji_Presentation} )?(\w*)(?:\((.*)\))?!?: (.*)$/u,
+      breakingHeaderPattern:
+        /^(?:\p{Emoji_Presentation} )?(\w*)(?:\((.*)\))?!: (.*)$/u,
     },
     recommendedBumpOpts: {
-      headerPattern: /^(?:\S+? )?(\w*)(?:\((.*)\))?!?: (.*)$/,
-      breakingHeaderPattern: /^(?:\S+? )?(\w*)(?:\((.*)\))?!: (.*)$/,
+      headerPattern:
+        /^(?:\p{Emoji_Presentation} )?(\w*)(?:\((.*)\))?!?: (.*)$/u,
+      breakingHeaderPattern:
+        /^(?:\p{Emoji_Presentation} )?(\w*)(?:\((.*)\))?!: (.*)$/u,
     },
     parserOpts: {
-      headerPattern: /^(?:\S+? )?(\w*)(?:\((.*)\))?!?: (.*)$/,
-      breakingHeaderPattern: /^(?:\S+? )?(\w*)(?:\((.*)\))?!: (.*)$/,
+      headerPattern:
+        /^(?:\p{Emoji_Presentation} )?(\w*)(?:\((.*)\))?!?: (.*)$/u,
+      breakingHeaderPattern:
+        /^(?:\p{Emoji_Presentation} )?(\w*)(?:\((.*)\))?!: (.*)$/u,
     },
   };
 }
