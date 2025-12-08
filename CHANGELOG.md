@@ -1,3 +1,36 @@
+## 0.1.0 (2025-12-08)
+
+### 🚀 Features
+
+- **committier:** infer scope, huge refactoring ([e0dd22d](https://github.com/iamyoki/committier/commit/e0dd22d))
+
+### 🩹 Fixes
+
+- change default config ([86695b7](https://github.com/iamyoki/committier/commit/86695b7))
+
+### 💅 Refactors
+
+- simplify layers ([d290ca4](https://github.com/iamyoki/committier/commit/d290ca4))
+
+### 📖 Documentation
+
+- icon ([0d729d7](https://github.com/iamyoki/committier/commit/0d729d7))
+- fix theme ([64b2478](https://github.com/iamyoki/committier/commit/64b2478))
+- add nav ([6d8707f](https://github.com/iamyoki/committier/commit/6d8707f))
+- default theme dark ([70cc296](https://github.com/iamyoki/committier/commit/70cc296))
+
+### 🏡 Chore
+
+- **committier:** clean deps ([fde51dc](https://github.com/iamyoki/committier/commit/fde51dc))
+
+### ✅ Tests
+
+- fix test ([8b85c8d](https://github.com/iamyoki/committier/commit/8b85c8d))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.0.5 (2025-12-07)
 
 ### 🩹 Fixes
