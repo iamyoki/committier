@@ -46,20 +46,26 @@ It does:
 
 `pnpm add committier -D`
 
-Or `yarn add committier -D`
+`yarn add committier -D`
 
-Or `npm i committier -D`
+`npm i committier -D`
 
-Or install globally `pnpm add -g committier`
+Or install globally
 
-Or directly execute `pnpm dlx committier <command>` / `npx committier <command>`
+`pnpm add -g committier`
+
+Or directly execute
+
+`npx committier <command>`
+
+`pnpm dlx committier <command>`
 
 ## Usage
 
 - CLI
   - [format](#format)
   - [edit](#git-hook)
-  - [commit](#commit-tool)
+  - [commit](#commit-cli-tool)
 - [Integrate commitlint](#integrate-commitlint)
 - Module API
   - [FormatUseCase](.)
@@ -72,7 +78,7 @@ Or directly execute `pnpm dlx committier <command>` / `npx committier <command>`
 
 Format and preview the message
 
-## Git hook
+## Git Hook
 
 `committier edit <file>`
 
@@ -96,7 +102,7 @@ npx --no -- commitlint --edit $1
 
 > Note, there is no '--' before 'edit' command in committier but commitlint.
 
-## Commit tool
+## Commit CLI Tool
 
 `committier commit`
 
@@ -123,6 +129,14 @@ Then
 ```sh
 pnpm commit
 ```
+
+### Test and preview commit with `dry-run` mode
+
+It's useful if you only want to test the commit experience.
+
+`committier commit --dry-run`
+
+![dry run](.images/commit-dry-run.png)
 
 ## Integrate [commitlint](https://github.com/conventional-changelog/commitlint)
 

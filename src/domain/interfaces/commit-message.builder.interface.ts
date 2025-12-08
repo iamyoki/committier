@@ -4,7 +4,7 @@ import type { FormatRuleInterface } from "./format-rule.interface.ts";
 export interface CommitMessageBuilderInterface<T> {
   data: T;
 
-  applyRules(formatRules: FormatRuleInterface<T>[]): void;
+  applyRules(formatRules: FormatRuleInterface<T>[]): void | Promise<void>;
 
   build(): CommitMessage;
 }

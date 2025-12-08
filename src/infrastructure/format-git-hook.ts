@@ -16,7 +16,7 @@ export class FormatGitHook {
     const configService = new ConfigService(configLoader);
     const config = await configService.getConfig();
     const format = new FormatUseCase(config);
-    const finalMessage = format.execute(rawMessage);
+    const finalMessage = await format.execute({ rawMessage });
     await writeFile(commitMsgFilePath, finalMessage, "utf8");
     return finalMessage;
   }

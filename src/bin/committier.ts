@@ -10,12 +10,11 @@ import { CommitFilesUseCase } from "../application/use-cases/commit-files.use-ca
 import { EditUseCase } from "../application/use-cases/edit.use-case.ts";
 import { FormatUseCase } from "../application/use-cases/format.use-case.ts";
 import { GetCommitFilesUseCase } from "../application/use-cases/get-commit-files.use-case.ts";
-import { InferScopeUseCase } from "../application/use-cases/infer-scope.use-case.ts";
 import { CosmiconfigConfigLoader } from "../infrastructure/cosmiconfig-config-loader.ts";
 import { FsCommitMsgFile } from "../infrastructure/fs-commit-msg-file.ts";
 import { GitCommitFileRepository } from "../infrastructure/git-commit-file.repository.ts";
 import { Git } from "../infrastructure/git.ts";
-import { CommitCLI } from "../presentation/cli/commit.cli.ts";
+import { CommitPrompt } from "../presentation/commit-prompt.ts";
 
 yargs()
   // setup
@@ -73,7 +72,16 @@ npx --no -- committier edit $1`,
       const configService = new ConfigService(configLoader);
       const config = await configService.getConfig();
       const format = new FormatUseCase(config);
-      const message = format.execute(rawMessage);
+      const commitFileRepository = new GitCommitFileRepository(
+        !!config.autoScope,
+      );
+      const getCommitFilesUseCase = new GetCommitFilesUseCase(
+        commitFileRepository,
+      );
+      const commitFiles = await getCommitFilesUseCase.execute({
+        commitables: true,
+      });
+      const message = await format.execute({ rawMessage, commitFiles });
       console.log(message);
     },
   )
@@ -112,18 +120,15 @@ npx --no -- committier edit $1`,
 
       const formatUseCase = new FormatUseCase(config);
 
-      const inferScopeUseCase = new InferScopeUseCase(getCommitFilesUseCase);
-
-      const commitCLI = new CommitCLI(
+      const commitPrompt = new CommitPrompt(
         config,
         getCommitFilesUseCase,
         addFilesUseCase,
         commitFilesUseCase,
         formatUseCase,
-        inferScopeUseCase,
       );
 
-      commitCLI.run(dryRunMode);
+      commitPrompt.run(dryRunMode);
     },
   )
   .demandCommand(1, "You need at least one command before moving on")

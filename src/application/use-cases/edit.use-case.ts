@@ -7,9 +7,9 @@ export class EditUseCase {
     private readonly commitMsgFile: CommitMsgFileInterface,
   ) {}
 
-  async execute(filePath: string): Promise<void> {
-    const rawMessage = await this.commitMsgFile.read(filePath);
-    const finalMessage = this.formatUseCase.execute(rawMessage);
+  async execute(commitMsgFilePath: string): Promise<void> {
+    const rawMessage = await this.commitMsgFile.read(commitMsgFilePath);
+    const finalMessage = await this.formatUseCase.execute({ rawMessage });
     await this.commitMsgFile.write(finalMessage);
   }
 }

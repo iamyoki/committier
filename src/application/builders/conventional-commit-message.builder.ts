@@ -17,11 +17,11 @@ export class ConventionalCommitMessageBuilder
     this.data = this.parser.parse(this.raw);
   }
 
-  applyRules(
+  async applyRules(
     formatRules: FormatRuleInterface<ConventionalCommitMessageParsedDataType>[],
-  ): void {
+  ): Promise<void> {
     for (const rule of formatRules) {
-      rule.apply(this.data);
+      await rule.apply(this.data);
     }
   }
 

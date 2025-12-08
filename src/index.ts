@@ -4,9 +4,9 @@ import type { CommitMsgFileInterface } from "./application/interfaces/commit-msg
 import type { ConfigType } from "./application/types/config.type.ts";
 import type { ConventionalCommitMessageConfigType } from "./application/types/conventional-commit-message-config.type.ts";
 import { EditUseCase } from "./application/use-cases/edit.use-case.ts";
-import { CommitCLI } from "./presentation/cli/commit.cli.ts";
+import { CommitPrompt } from "./presentation/commit-prompt.ts";
 
-export { CommitCLI, EditUseCase, FormatUseCase };
+export { CommitPrompt, EditUseCase, FormatUseCase };
 
 export type {
   CommitMsgFileInterface,

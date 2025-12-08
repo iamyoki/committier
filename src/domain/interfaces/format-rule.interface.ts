@@ -1,5 +1,5 @@
 export interface FormatRuleInterface<T> {
   ruleName: string;
 
-  apply(parsedData: T): void;
+  apply(parsedData: T): void | Promise<void>;
 }

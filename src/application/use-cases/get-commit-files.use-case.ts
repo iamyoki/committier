@@ -1,3 +1,4 @@
+import type { CommitFile } from "../../domain/commit-file.ts";
 import type { CommitFileRepositoryInterface } from "../../domain/interfaces/commit-file.repository.interface.ts";
 
 export class GetCommitFilesUseCase {
@@ -5,7 +6,9 @@ export class GetCommitFilesUseCase {
     private readonly commitFileRepository: CommitFileRepositoryInterface,
   ) {}
 
-  execute(filter?: Partial<{ addables: boolean; commitables: boolean }>) {
+  execute(
+    filter?: Partial<{ addables: boolean; commitables: boolean }>,
+  ): Promise<CommitFile[]> {
     if (filter?.addables) {
       return this.commitFileRepository.findAddables();
     } else if (filter?.commitables) {
