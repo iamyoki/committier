@@ -1,3 +1,13 @@
+## 0.1.1 (2025-12-08)
+
+### 🩹 Fixes
+
+- commitlint emoji parser ([d320bdd](https://github.com/iamyoki/committier/commit/d320bdd))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.1.0 (2025-12-08)
 
 ### 🚀 Features
