@@ -13,5 +13,11 @@ export function baseOptions(): BaseLayoutProps {
       ),
     },
     githubUrl: "https://github.com/iamyoki/committier",
+    links: [
+      {
+        text: "Documentation",
+        url: "/docs",
+      },
+    ],
   };
 }
