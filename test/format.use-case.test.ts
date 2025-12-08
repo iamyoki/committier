@@ -1,6 +1,6 @@
 import { ConfigService } from "../src/format/application/services/config.service.ts";
 import { FormatUseCase } from "../src/format/application/use-cases/format.use-case.ts";
-import { CosmiconfigConfigLoader } from "../src/format/infrastructure/cosmiconfig-config-loader.ts";
+import { CosmiconfigConfigLoader } from "../src/infrastructure/cosmiconfig-config-loader.ts";
 
 const configLoader = new CosmiconfigConfigLoader();
 const configService = new ConfigService(configLoader);

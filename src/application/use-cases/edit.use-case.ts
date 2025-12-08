@@ -1,5 +1,5 @@
-import type { FormatUseCase } from "../../../format/application/use-cases/format.use-case.ts";
 import type { CommitMsgFileInterface } from "../interfaces/commit-msg-file.interface.ts";
+import type { FormatUseCase } from "./format.use-case.ts";
 
 export class EditUseCase {
   constructor(

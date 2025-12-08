@@ -8,5 +8,5 @@ export default function Layout({ children }: LayoutProps<"/">) {
 
 export const metadata: Metadata = {
   title: "committier",
-  description: "Fix and Format commit messages.",
+  description: "Fix and format commit messages.",
 };

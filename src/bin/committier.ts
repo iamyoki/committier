@@ -4,17 +4,18 @@ import path from "node:path";
 import pc from "picocolors";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { AddFilesUseCase } from "../commit/application/use-case/add-files.use-case.ts";
-import { CommitFilesUseCase } from "../commit/application/use-case/commit-files.use-case.ts";
-import { GetCommitFilesUseCase } from "../commit/application/use-case/get-commit-files.use-case.ts";
-import { GitCommitFileRepository } from "../commit/infrastructure/git-commit-file.repository.ts";
-import { Git } from "../commit/infrastructure/git.ts";
-import { CommitCLI } from "../commit/presentation/cli/commit.cli.ts";
-import { EditUseCase } from "../edit/application/use-cases/edit.use-case.ts";
-import { FsCommitMsgFile } from "../edit/infrastructure/fs-commit-msg-file.ts";
-import { ConfigService } from "../format/application/services/config.service.ts";
-import { FormatUseCase } from "../format/application/use-cases/format.use-case.ts";
-import { CosmiconfigConfigLoader } from "../format/infrastructure/cosmiconfig-config-loader.ts";
+import { ConfigService } from "../application/services/config.service.ts";
+import { AddFilesUseCase } from "../application/use-cases/add-files.use-case.ts";
+import { CommitFilesUseCase } from "../application/use-cases/commit-files.use-case.ts";
+import { EditUseCase } from "../application/use-cases/edit.use-case.ts";
+import { FormatUseCase } from "../application/use-cases/format.use-case.ts";
+import { GetCommitFilesUseCase } from "../application/use-cases/get-commit-files.use-case.ts";
+import { InferScopeUseCase } from "../application/use-cases/infer-scope.use-case.ts";
+import { CosmiconfigConfigLoader } from "../infrastructure/cosmiconfig-config-loader.ts";
+import { FsCommitMsgFile } from "../infrastructure/fs-commit-msg-file.ts";
+import { GitCommitFileRepository } from "../infrastructure/git-commit-file.repository.ts";
+import { Git } from "../infrastructure/git.ts";
+import { CommitCLI } from "../presentation/cli/commit.cli.ts";
 
 yargs()
   // setup
@@ -23,7 +24,7 @@ yargs()
   .usage(
     `${pc.greenBright("⚡︎$0")}
 
-${pc.dim(pc.greenBright("Fix and Format commit messages."))}`,
+${pc.dim(pc.greenBright("Fix and format commit messages."))}`,
   )
   .alias("v", "version")
   .alias("h", "help")
@@ -111,12 +112,15 @@ npx --no -- committier edit $1`,
 
       const formatUseCase = new FormatUseCase(config);
 
+      const inferScopeUseCase = new InferScopeUseCase(getCommitFilesUseCase);
+
       const commitCLI = new CommitCLI(
         config,
         getCommitFilesUseCase,
         addFilesUseCase,
         commitFilesUseCase,
         formatUseCase,
+        inferScopeUseCase,
       );
 
       commitCLI.run(dryRunMode);

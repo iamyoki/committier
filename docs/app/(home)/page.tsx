@@ -42,7 +42,7 @@ export default function HomePage() {
 
           <div className="mt-3 max-w-3xl ml-2">
             <p className="text-lg text-gray-600 dark:text-neutral-400">
-              Fix and Format commit messages.
+              Fix and format commit messages.
             </p>
           </div>
 

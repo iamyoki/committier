@@ -1,6 +1,6 @@
 import { readPackageUp } from "read-package-up";
 import { simpleGit } from "simple-git";
-import { CommitFile } from "../domain/commit-file.js";
+import { CommitFile } from "../domain/commit-file.ts";
 import type { CommitFileRepositoryInterface } from "../domain/interfaces/commit-file.repository.interface.ts";
 
 export class GitCommitFileRepository implements CommitFileRepositoryInterface {

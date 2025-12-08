@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  Fix and Format commit messages.
+  Fix and format commit messages.
 </p>
 
 <p align="center">

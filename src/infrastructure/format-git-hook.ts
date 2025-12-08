@@ -2,9 +2,9 @@ import { execSync } from "child_process";
 import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { ConfigService } from "../../format/application/services/config.service.ts";
-import { FormatUseCase } from "../../format/application/use-cases/format.use-case.ts";
-import { CosmiconfigConfigLoader } from "../../format/infrastructure/cosmiconfig-config-loader.ts";
+import { ConfigService } from "../application/services/config.service.ts";
+import { FormatUseCase } from "../application/use-cases/format.use-case.ts";
+import { CosmiconfigConfigLoader } from "./cosmiconfig-config-loader.ts";
 
 export class FormatGitHook {
   async execute(commitMsgFilePath: string): Promise<string> {

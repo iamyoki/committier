@@ -2,11 +2,6 @@ import type { FormatRuleInterface } from "../../../domain/interfaces/format-rule
 import type { ConfigType } from "../../types/config.type.ts";
 import type { ConventionalCommitMessageParsedDataType } from "../../types/conventional-commit-message-parsed-data.type.ts";
 
-/**Default fallback to "fix" */
-export type FallbackTypeRuleOptions = {
-  defaultType: string;
-};
-
 export class FallbackTypeRule
   implements FormatRuleInterface<ConventionalCommitMessageParsedDataType>
 {

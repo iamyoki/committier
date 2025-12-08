@@ -10,12 +10,13 @@ import {
   text,
 } from "@clack/prompts";
 import pc from "picocolors";
-import { DefaultConfig } from "../../../format/application/constants/default-config.constant.ts";
-import type { ConfigType } from "../../../format/application/types/config.type.ts";
-import type { FormatUseCase } from "../../../format/application/use-cases/format.use-case.ts";
-import type { AddFilesUseCase } from "../../application/use-case/add-files.use-case.ts";
-import type { CommitFilesUseCase } from "../../application/use-case/commit-files.use-case.ts";
-import type { GetCommitFilesUseCase } from "../../application/use-case/get-commit-files.use-case.ts";
+import { DefaultConfig } from "../../application/constants/default-config.constant.ts";
+import type { ConfigType } from "../../application/types/config.type.ts";
+import type { AddFilesUseCase } from "../../application/use-cases/add-files.use-case.ts";
+import type { CommitFilesUseCase } from "../../application/use-cases/commit-files.use-case.ts";
+import type { FormatUseCase } from "../../application/use-cases/format.use-case.ts";
+import type { GetCommitFilesUseCase } from "../../application/use-cases/get-commit-files.use-case.ts";
+import type { InferScopeUseCase } from "../../application/use-cases/infer-scope.use-case.ts";
 import type { CommitFile } from "../../domain/commit-file.ts";
 
 export class CommitCLI {
@@ -25,6 +26,7 @@ export class CommitCLI {
     private readonly addFilesUseCase: AddFilesUseCase,
     private readonly commitFilesUseCase: CommitFilesUseCase,
     private readonly formatUseCase: FormatUseCase,
+    private readonly inferScopeUseCase: InferScopeUseCase,
   ) {}
 
   async run(dryRunMode: boolean) {
@@ -93,9 +95,24 @@ export class CommitCLI {
               if (!value) return `Description is required!`;
             },
           }),
-        confirm: ({ results }) => {
-          const { type, scope, description } = results;
-          const rawMessage = `${type}${scope ? `(${scope})` : ""}: ${description}`;
+        confirm: async ({ results }) => {
+          let rawMessage: string = `${results.type}`;
+
+          if (
+            this.config.autoScope === true ||
+            this.config.autoScope === "replaceToPackageName" ||
+            (this.config.autoScope === "defaultToPackageName" &&
+              !/\p{L}/u.test(results.scope ?? ""))
+          ) {
+            const scopeArr = await this.inferScopeUseCase.execute(
+              (results.commit as CommitFile[]).map((f) => f.filePath),
+            );
+            const scope = scopeArr.join(",");
+            rawMessage += `(${scope})`;
+          }
+
+          rawMessage += `: ${results.description}`;
+
           finalMessage = this.formatUseCase.execute(rawMessage);
           return confirm({
             message: `Confirm: ${finalMessage}`,
