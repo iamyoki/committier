@@ -4,6 +4,7 @@ export const DefaultConfig: ConfigType = {
   autoEmoji: true,
   autoScope: false,
   defaultType: "fix",
+  defaultDescription: false,
   types: {
     feat: {
       emoji: "✨",

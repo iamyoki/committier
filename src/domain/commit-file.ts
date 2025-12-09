@@ -31,6 +31,10 @@ export class CommitFile {
     return path.basename(this.filePath);
   }
 
+  get fileBaseName(): string {
+    return path.parse(this.filePath).name;
+  }
+
   get packageNameWithoutScope(): string | undefined {
     return this.packageName?.replace(/^.+\//, "");
   }

@@ -28,5 +28,6 @@ export type ConventionalCommitMessageConfigType = {
   autoEmoji: boolean;
   autoScope: boolean | "replaceToPackageName" | "defaultToPackageName";
   defaultType: string;
+  defaultDescription: boolean | "fileName" | "fileBasename" | "filePath";
   types: Record<TypeKey, Type>;
 };

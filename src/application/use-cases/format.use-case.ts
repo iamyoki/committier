@@ -1,6 +1,7 @@
 import type { CommitFile } from "../../domain/commit-file.ts";
 import { ConventionalCommitMessageBuilder } from "../builders/conventional-commit-message.builder.ts";
 import { ConventionalCommitMessageParser } from "../parsers/conventional-commit-message.parser.ts";
+import { DefaultDescriptionRule } from "../rules/conventional-commit-message-rules/default-description.rule.ts";
 import { DescriptionCaseRule } from "../rules/conventional-commit-message-rules/description-case.rule.ts";
 import { DescriptionNoBreaksRule } from "../rules/conventional-commit-message-rules/description-no-breaks.rule.ts";
 import { EmojiRule } from "../rules/conventional-commit-message-rules/emoji.rule.ts";
@@ -28,6 +29,7 @@ export class FormatUseCase {
       new FallbackTypeRule(this.config),
       new ScopeCaseRule(),
       new InferScopeRule(this.config, context.commitFiles),
+      new DefaultDescriptionRule(this.config, context.commitFiles),
       new DescriptionCaseRule(),
       new DescriptionNoBreaksRule(),
       new EmojiRule(this.config),

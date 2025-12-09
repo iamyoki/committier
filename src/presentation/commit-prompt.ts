@@ -89,8 +89,9 @@ export class CommitPrompt {
         description: () =>
           text({
             message: "Description",
-            validate(value) {
-              if (!value) return `Description is required!`;
+            validate: (value) => {
+              if (!value && !this.config.defaultDescription)
+                return `Description is required!`;
             },
           }),
         confirm: async ({ results }) => {
