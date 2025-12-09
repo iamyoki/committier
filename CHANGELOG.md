@@ -1,3 +1,22 @@
+## 0.2.1 (2025-12-09)
+
+### 🩹 Fixes
+
+- add up when starts with upper case ([0ca61f3](https://github.com/iamyoki/committier/commit/0ca61f3))
+
+### 🏡 Chore
+
+- up README.md ([0c2e219](https://github.com/iamyoki/committier/commit/0c2e219))
+- clean ([900a071](https://github.com/iamyoki/committier/commit/900a071))
+
+### ✅ Tests
+
+- parser ([5bb97d6](https://github.com/iamyoki/committier/commit/5bb97d6))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.2.0 (2025-12-09)
 
 ### 🚀 Features

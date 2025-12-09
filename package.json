@@ -1,6 +1,6 @@
 {
   "name": "committier",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Fix and format commit messages.",
   "keywords": [
     "git",
