@@ -141,3 +141,31 @@ This is a helper function providing type intellisense, you can just export an ob
   }
 }
 ```
+
+## Reference
+
+<TypeTable
+  type={{
+    autoEmoji: {
+      description:
+        'Automatically add an emoji when the commit message does not contain one.',
+      type: 'boolean',
+      default: 'true',
+    },
+    autoScope: {
+      description: `Automatically infer the scope from the package names`,
+      type: 'boolean | "replaceToPackageName" | "defaultToPackageName"',
+      default: 'true',
+    },
+    defaultType: {
+      description: `If type is missing, fill the default type`,
+      type: 'string',
+      default: 'fix',
+    },
+    types: {
+      description: `An object that defines commit types and emojis`,
+      type: 'Type',
+      default: 'fix',
+    },
+  }}
+/>
