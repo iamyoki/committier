@@ -29,6 +29,8 @@ You can add a `committier` field in `package.json`
 
 ## Config Example
 
+### 1. Config with JSON
+
 Create a `.committerrc.json` file at root, you can partially add fields to override the [default config](#default-config).
 
 ```json title=".commitierrc.json"
@@ -40,13 +42,33 @@ Create a `.committerrc.json` file at root, you can partially add fields to overr
 }
 ```
 
+### 2. Config with JS
+
+Create a `committier.config.js` file at root.
+
+```js title="committier.config.js"
+import { defineConfig } from "committier"
+
+export default defineConfig({
+  autoEmoji: true,
+  autoScope: true,
+  defaultType: "fix",
+  defaultDescription: true,
+});
+```
+
+<Callout title="About defineConfig()">
+This is a helper function providing type intellisense, you can just export an object as well.
+</Callout>
+
 ## Default Config
 
 ```json
 {
   "autoEmoji": true, // boolean
-  "autoScope": true, // boolean | 'replaceToPackageName' | 'defaultToPackageName'
+  "autoScope": false, // boolean | 'replaceToPackageName' (true) | 'defaultToPackageName'
   "defaultType": "fix",
+  "defaultDescription": false, // boolean | "fileName" (true) | "fileBasename" | "filePath"
   "types": {
     "feat": {
       "emoji": "✨",

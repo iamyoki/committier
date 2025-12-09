@@ -40,6 +40,17 @@ Then
 pnpm commit
 ```
 
+## Test with `dry-run` Mode
+
+It's useful if you only want to test the commit experience.
+
+```sh
+pnpm committier commit --dry-run
+```
+
+![dry run](/commit-dry-run.png)
+
+
 ## Integrate commitlint
 
 Make sure **commitier** runs before [commitlint](https://github.com/conventional-changelog/commitlint)
