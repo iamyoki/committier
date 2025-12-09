@@ -5,7 +5,9 @@ import { ConventionalCommitMessageParser } from "../../../src/application/parser
 const cases = [
   {
     message: "some error",
-    expected: { header: { type: "some", description: "error" } },
+    expected: {
+      header: { type: "some", description: "error" },
+    },
   },
   {
     message: ":some error",

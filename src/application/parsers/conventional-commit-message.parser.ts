@@ -13,13 +13,17 @@ export class ConventionalCommitMessageParser
     const headerSection = m?.[0];
     str = str.slice(headerSection?.length).trim();
 
-    const restSections = str.split("\n\n");
+    const restSections = str.length > 0 ? str.split("\n\n") : undefined;
+
     const bodiesSection =
-      restSections.length > 1
+      restSections &&
+      (restSections.length > 1
         ? restSections.slice(0, -1)
-        : restSections.slice(0);
+        : restSections.slice(0));
+
     const footersSection =
-      restSections.length > 1 ? restSections.slice(-1) : undefined;
+      restSections &&
+      (restSections.length > 1 ? restSections.slice(-1) : undefined);
 
     const data: ConventionalCommitMessageParsedDataType = Object.create(null);
 

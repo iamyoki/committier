@@ -51,6 +51,7 @@
     "start": "node ./dist/app/main.js",
     "test": "node --import=tsx --conditions=development --test 'test/**/*.test.{js,ts,cjs,cts}'",
     "test:cov": "pnpm test --experimental-test-coverage",
+    "test:only": "node --import=tsx --conditions=development --test-only --test 'test/**/*.test.{js,ts,cjs,cts}'",
     "test:watch": "pnpm test --watch",
     "typecheck": "tsc -b"
   },
