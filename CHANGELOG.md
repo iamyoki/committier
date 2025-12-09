@@ -1,3 +1,17 @@
+## 0.2.2 (2025-12-09)
+
+### 🩹 Fixes
+
+- fn call ([3c951f3](https://github.com/iamyoki/committier/commit/3c951f3))
+
+### ✅ Tests
+
+- complete tests and fix some issues ([ed56290](https://github.com/iamyoki/committier/commit/ed56290))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.2.1 (2025-12-09)
 
 ### 🩹 Fixes
