@@ -1,3 +1,23 @@
+## 0.2.0 (2025-12-09)
+
+### 🚀 Features
+
+- add defineConfig, fix parser issues ([999201d](https://github.com/iamyoki/committier/commit/999201d))
+- add default description strategy ([5366e5d](https://github.com/iamyoki/committier/commit/5366e5d))
+
+### 🩹 Fixes
+
+- edit.use-case.ts, committier.ts ([c459868](https://github.com/iamyoki/committier/commit/c459868))
+
+### 📖 Documentation
+
+- up use-prompt ([621ead8](https://github.com/iamyoki/committier/commit/621ead8))
+- configuration.mdx, mdx-components.tsx ([53e1f1b](https://github.com/iamyoki/committier/commit/53e1f1b))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.1.1 (2025-12-08)
 
 ### 🩹 Fixes
