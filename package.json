@@ -49,7 +49,7 @@
     "lint": "eslint --cache",
     "prepare": "husky",
     "start": "node ./dist/app/main.js",
-    "test": "node --import=tsx --conditions=development --test ./test/**",
+    "test": "node --import=tsx --conditions=development --test 'test/**/*.test.{js,ts,cjs,cts}'",
     "test:cov": "pnpm test --experimental-test-coverage",
     "test:watch": "pnpm test --watch",
     "typecheck": "tsc -b"

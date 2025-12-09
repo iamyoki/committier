@@ -9,8 +9,12 @@ export default defineConfig([
   globalIgnores([
     "**/dist",
     "**/build",
+    "**/out",
+    "**/docs",
     "**/coverage",
     "**/next",
+    "**/.next",
+    "**/.source",
     "**/*cache",
     "**/CHANGELOG*",
   ]),
@@ -26,7 +30,10 @@ export default defineConfig([
       // Allowed unused vars like "__a"
       "@typescript-eslint/no-unused-vars": [
         "error",
-        { varsIgnorePattern: "^([iI][A-Z]|__)" },
+        {
+          varsIgnorePattern: "^([iI][A-Z]|__)",
+          argsIgnorePattern: "^([iI][A-Z]|__)",
+        },
       ],
     },
   },

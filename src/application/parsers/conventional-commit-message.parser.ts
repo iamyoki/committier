@@ -6,11 +6,20 @@ export class ConventionalCommitMessageParser
     CommitMessageParserInterface<ConventionalCommitMessageParsedDataType>
 {
   parse(raw: string): ConventionalCommitMessageParsedDataType {
-    const sections = raw.split("\n\n");
-    const headerSection = sections[0];
+    let str = raw;
+    const r = /^.*(?=\n?)/;
+    const m = str.match(r);
+
+    const headerSection = m?.[0];
+    str = str.slice(headerSection?.length).trim();
+
+    const restSections = str.split("\n\n");
     const bodiesSection =
-      sections.length > 2 ? sections.slice(1, -1) : sections.slice(1);
-    const footersSection = sections.length > 2 ? sections.slice(-1) : undefined;
+      restSections.length > 1
+        ? restSections.slice(0, -1)
+        : restSections.slice(0);
+    const footersSection =
+      restSections.length > 1 ? restSections.slice(-1) : undefined;
 
     const data: ConventionalCommitMessageParsedDataType = Object.create(null);
 
@@ -47,12 +56,13 @@ export class ConventionalCommitMessageParser
     r = /^(\w+)(?:[ (:]|$)/;
     m = str.match(r);
     const type = m?.[1];
-    // if (!type) throw new Error("Missing header type");
-    str = str.slice(type?.length).trimStart();
+    if (type) {
+      str = str.slice(type.length).trimStart();
+    }
 
     // scope
     // r = /^(([\w,]+)|(\(.+)\))[ :!]/;
-    r = /^((\(.+\))|(\w+,(\w+,?)*)|.+(?=[:!]))[ :!]/;
+    r = /^((\(.+\))|[^:!]+(?=[:!])|(\w+,(\w+,?)*))[ :!]/;
     m = str.match(r);
     const scopeStr = m?.[1];
     const scope = scopeStr
