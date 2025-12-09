@@ -40,5 +40,9 @@ export class DefaultDescriptionRule
         break;
       }
     }
+
+    if (/^[A-Z]/.test(header.description)) {
+      header.description = `up ${header.description}`;
+    }
   }
 }
