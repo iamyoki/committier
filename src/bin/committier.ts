@@ -46,7 +46,17 @@ npx --no -- committier edit $1`,
       const configService = new ConfigService(configLoader);
       const config = await configService.getConfig();
       const format = new FormatUseCase(config);
-      const edit = new EditUseCase(format, commitMsgFile);
+      const commitFileRepository = new GitCommitFileRepository(
+        !!config.autoScope || !!config.defaultDescription,
+      );
+      const getCommitFilesUseCase = new GetCommitFilesUseCase(
+        commitFileRepository,
+      );
+      const edit = new EditUseCase(
+        format,
+        commitMsgFile,
+        getCommitFilesUseCase,
+      );
       await edit.execute(filePath);
     },
   )
@@ -73,7 +83,7 @@ npx --no -- committier edit $1`,
       const config = await configService.getConfig();
       const format = new FormatUseCase(config);
       const commitFileRepository = new GitCommitFileRepository(
-        !!config.autoScope,
+        !!config.autoScope || !!config.defaultDescription,
       );
       const getCommitFilesUseCase = new GetCommitFilesUseCase(
         commitFileRepository,
