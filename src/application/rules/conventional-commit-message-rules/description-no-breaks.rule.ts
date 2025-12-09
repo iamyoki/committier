@@ -16,7 +16,7 @@ export class DescriptionNoBreaksRule
       const splits = header.description.split(/\n/).filter((w) => !!w);
       const [firstWord, ...restWords] = splits;
       const formatRestWords = restWords.map((w) =>
-        w[0] ? w[0].toUpperCase + w.slice(1) : "",
+        w[0] ? w[0].toUpperCase() + w.slice(1) : "",
       );
       header.description = [firstWord, ...formatRestWords].join(". ");
     }
