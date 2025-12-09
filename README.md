@@ -173,8 +173,9 @@ Default config:
 ```json
 {
   "autoEmoji": true, // boolean
-  "autoScope": true, // boolean | 'replaceToPackageName' | 'defaultToPackageName'
+  "autoScope": false, // boolean | 'replaceToPackageName' (true) | 'defaultToPackageName'
   "defaultType": "fix",
+  "defaultDescription": false, // boolean | "fileName" (true) | "fileBasename" | "filePath"
   "types": {
     "feat": {
       "emoji": "✨",
