@@ -30,7 +30,7 @@ ${pc.dim(pc.greenBright("Fix and format commit messages."))}`,
   // edit
   .command(
     "edit <file>",
-    "Format and edit commit message file",
+    "format and edit commit message file",
     (yargs) => {
       yargs.positional("file", { type: "string" });
       yargs.example(
@@ -63,7 +63,7 @@ npx --no -- committier edit $1`,
   // format
   .command(
     "format <message>",
-    "Format and preview the message",
+    "format and preview the message",
     (yargs) => {
       yargs.positional("message", {
         type: "string",

@@ -116,6 +116,11 @@ export class CommitPrompt {
       },
     );
 
+    if (!g.confirm) {
+      cancel("Abort.");
+      process.exit(0);
+    }
+
     if (dryRunMode) {
       cancel("Done. (Nothing committed due to `--dry-run` mode)");
       process.exit(0);
