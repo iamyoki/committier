@@ -1,3 +1,17 @@
+## 0.2.3 (2025-12-22)
+
+### 🩹 Fixes
+
+- prompt confirm ([3848669](https://github.com/iamyoki/committier/commit/3848669))
+
+### 📖 Documentation
+
+- fix use prompt ([cca7826](https://github.com/iamyoki/committier/commit/cca7826))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.2.2 (2025-12-09)
 
 ### 🩹 Fixes
