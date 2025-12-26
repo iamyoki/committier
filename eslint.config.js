@@ -17,6 +17,7 @@ export default defineConfig([
     "**/.source",
     "**/*cache",
     "**/CHANGELOG*",
+    "**/prompts/*.md",
   ]),
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],

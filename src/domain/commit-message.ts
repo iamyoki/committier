@@ -1,7 +1,7 @@
 export class CommitMessage {
-  header: string;
-  bodies: string[] | undefined;
-  footers: string[] | undefined;
+  readonly header: string;
+  readonly bodies: string[] | undefined;
+  readonly footers: string[] | undefined;
 
   private constructor(header: string, bodies?: string[], footers?: string[]) {
     this.header = header;
