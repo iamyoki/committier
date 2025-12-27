@@ -16,17 +16,23 @@ import { GitCommitFileRepository } from "../infrastructure/git-commit-file.repos
 import { Git } from "../infrastructure/git.ts";
 import { CommitPrompt } from "../presentation/commit-prompt.ts";
 
+// ${pc.dim(pc.greenBright("Fix and format commit messages."))}
+
 yargs()
   // setup
   .scriptName("committier")
   .wrap(yargs().terminalWidth())
-  .usage(
-    `${pc.greenBright("⚡︎$0")}
-
-${pc.dim(pc.greenBright("Fix and format commit messages."))}`,
-  )
+  .usage(`${pc.greenBright("⚡︎$0")}`)
   .alias("v", "version")
   .alias("h", "help")
+  .example([
+    ["$0 ai", pc.dim("Use AI actions")],
+    [
+      '$0 format "feat app1,app2 add foo bar"',
+      pc.dim("Preview the formatted result"),
+    ],
+    ["$0 commit", pc.dim("Use commit CLI")],
+  ])
   // edit
   .command(
     "edit <file>",
@@ -140,6 +146,20 @@ npx --no -- committier edit $1`,
 
       commitPrompt.run(dryRunMode);
     },
+  )
+  // AI
+  .command(
+    "ai",
+    "(Beta) AI actions",
+    (_yargs) => {
+      // yargs.option("dry-run", {
+      //   alias: "d",
+      //   type: "boolean",
+      //   default: false,
+      //   desc: "Only preview the commit result, not actually committing",
+      // });
+    },
+    async (_args) => {},
   )
   .demandCommand(1, "You need at least one command before moving on")
   .parse(hideBin(process.argv));
