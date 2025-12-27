@@ -6,7 +6,7 @@ import { CommitFilesUseCase } from "../application/use-cases/commit-files.use-ca
 import { EditUseCase } from "../application/use-cases/edit.use-case.ts";
 import { FormatUseCase } from "../application/use-cases/format.use-case.ts";
 import { GetCommitFilesUseCase } from "../application/use-cases/get-commit-files.use-case.ts";
-import { AiCommitGenerator } from "../infrastructure/ai-commit-generator.ts";
+import { AiCommitGeneratorWorker } from "../infrastructure/ai-commit-generator.worker.ts";
 import { CosmiconfigConfigLoader } from "../infrastructure/cosmiconfig-config-loader.ts";
 import { FsCommitMsgFile } from "../infrastructure/fs-commit-msg-file.ts";
 import { GitCommitFileRepository } from "../infrastructure/git-commit-file.repository.ts";
@@ -28,7 +28,7 @@ export function di(config: ConfigType) {
     ),
     git: new Git(),
     commitMsgFile: new FsCommitMsgFile(),
-    aiCommitGenerator: new AiCommitGenerator(),
+    aiCommitGenerator: new AiCommitGeneratorWorker(),
   };
 
   const useCases = {

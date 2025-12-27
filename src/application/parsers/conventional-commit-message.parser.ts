@@ -51,10 +51,11 @@ export class ConventionalCommitMessageParser
     let m: RegExpMatchArray | null;
 
     // emoji
-    r = /\p{Emoji_Presentation}/u;
+    r = /\p{Emoji_Presentation}|\p{Emoji}\uFE0F/u;
     m = str.match(r);
     const emoji = m?.[0];
     str = str.slice(emoji?.length).trimStart();
+    console.log(str);
 
     // type
     r = /^(\w+)(?:[ (:]|$)/;

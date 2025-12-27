@@ -100,7 +100,10 @@ export class AiPrompt {
 
     s.stop("Generated commit message");
 
-    const str = `${aiCommitMessage.type}: ${aiCommitMessage.description}\n\n${aiCommitMessage.body?.map((item) => `- ${item}`).join("\n")}`;
+    let str = `${aiCommitMessage.type}: ${aiCommitMessage.description}`;
+    if (aiCommitMessage.body) {
+      str += `\n\n${aiCommitMessage.body?.map((item) => `- ${item}`).join("\n")}`;
+    }
     const formatted = await this.formatUseCase.execute({
       rawMessage: str,
       commitFiles: commitableFiles,
