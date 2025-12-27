@@ -55,7 +55,6 @@ export class ConventionalCommitMessageParser
     m = str.match(r);
     const emoji = m?.[0];
     str = str.slice(emoji?.length).trimStart();
-    console.log(str);
 
     // type
     r = /^(\w+)(?:[ (:]|$)/;
