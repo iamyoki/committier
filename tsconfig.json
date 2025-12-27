@@ -48,5 +48,5 @@
     "customConditions": ["development"], // May not needed in polyrepo
     "resolveJsonModule": true
   },
-  "include": ["src", "test", "scripts", "./committier.config.ts"]
+  "include": ["src", "test", "examples", "scripts", "./committier.config.ts"]
 }

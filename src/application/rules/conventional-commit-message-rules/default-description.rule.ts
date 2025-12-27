@@ -18,6 +18,10 @@ export class DefaultDescriptionRule
 
     if (header.description) return;
     if (!this.config.defaultDescription) return;
+    if (!header.description && !this.commitFiles?.length)
+      throw new Error(
+        `"autoDescription" requires files to commit. You may forgot "git add ..."`,
+      );
     if (!this.commitFiles?.length) return;
 
     switch (this.config.defaultDescription) {

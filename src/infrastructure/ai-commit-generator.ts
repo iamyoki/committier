@@ -17,33 +17,41 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
     modelId: "onnx-community/Qwen2.5-Coder-0.5B-Instruct",
     dtype: "q4",
     device: "auto",
-    temperature: 0.1,
+    temperature: 0.05,
     top_p: 0.9,
-    max_new_tokens: 380,
+    max_new_tokens: 300,
     return_full_text: false,
+    repetition_penalty: 1.05,
   } as const;
 
   private transformers: typeof import("@huggingface/transformers") | undefined;
 
   private readonly git = simpleGit();
 
-  constructor(
-    private readonly props?: {
-      onModelDownloadStart?: () => void;
-      onModelDownloading?: (info: {
-        file: string;
-        MBSize: number;
-        progress: number;
-      }) => void;
-      onModelDownloadEnd?: () => void;
-      onTransformersInstall?: () => void;
-    },
-  ) {}
+  private onModelDownloadStart: undefined | (() => void);
+  private onModelDownloading:
+    | undefined
+    | ((info: { file: string; MBSize: number; progress: number }) => void);
+  private onModelDownloadEnd: undefined | (() => void);
+  private onTransformersInstall: undefined | (() => void);
 
   async execute(params?: {
     userIntent?: string;
     _diff?: string;
+    onModelDownloadStart?: () => void;
+    onModelDownloading?: (info: {
+      file: string;
+      MBSize: number;
+      progress: number;
+    }) => void;
+    onModelDownloadEnd?: () => void;
+    onTransformersInstall?: () => void;
   }): Promise<AiCommitMessage> {
+    this.onModelDownloadStart = params?.onModelDownloadStart;
+    this.onModelDownloading = params?.onModelDownloading;
+    this.onModelDownloadEnd = params?.onModelDownloadEnd;
+    this.onTransformersInstall = params?.onTransformersInstall;
+
     try {
       await this.ensureModelCacheDir();
     } catch {
@@ -73,7 +81,9 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
         { role: "system", content: systemPrompt },
         {
           role: "user",
-          content: `Diff:\n${diff}\n\nUser Itent:\n${params?.userIntent ?? ""}`,
+          content: `Diff:
+${diff}
+User Itent: ${params?.userIntent ?? ""}`,
         },
       ],
       {
@@ -81,8 +91,12 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
         top_p: config.top_p,
         max_new_tokens: config.max_new_tokens,
         return_full_text: config.return_full_text,
+        repetition_penalty: config.repetition_penalty,
       },
     )) as unknown as { generated_text: { role: string; content: string }[] }[];
+
+    // console.log(out[0]?.generated_text);
+    // console.log(diff.length);
 
     const response = out[0]!.generated_text.at(-1)!;
 
@@ -117,7 +131,7 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
       if (!resolved) throw new Error("Cannot detect package manager");
 
       // install
-      this.props?.onTransformersInstall?.();
+      this.onTransformersInstall?.();
       const { command, args } = resolved;
       // const s = spinner();
       // s.start(`Installing @huggingface/transformers via ${pm.name}`);
@@ -157,19 +171,19 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
     switch (info.status) {
       case "progress": {
         const MBSize = info.total / 1024 / 1024;
-        if (MBSize > 50 && this.props?.onModelDownloading) {
-          this.props.onModelDownloading({
+        if (MBSize > 50 && this.onModelDownloading) {
+          this.onModelDownloading({
             file: info.file,
             MBSize,
             progress: +info.progress.toFixed(2),
           });
         } else {
-          this.props?.onModelDownloadStart?.();
+          this.onModelDownloadStart?.();
         }
         break;
       }
       case "done": {
-        this.props?.onModelDownloadEnd?.();
+        this.onModelDownloadEnd?.();
         break;
       }
     }
@@ -199,9 +213,26 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
     );
   }
 
+  // private formatToJSON(content: string) {
+  //   const match = content.match(/\{[\s\S]*\}/);
+  //   if (!match) throw new Error("Failed matching generated content");
+  //   return JSON.parse(match[0]);
+  // }
+
   private formatToJSON(content: string) {
-    const match = content.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error("Failed matching generated content");
-    return JSON.parse(match[0]);
+    const sanitized = content
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+
+    const match = sanitized.match(/\{[^]*\}/);
+
+    if (!match) {
+      throw new Error(`Not a JSON`);
+    }
+
+    const jsonStr = match[0];
+
+    return JSON.parse(jsonStr);
   }
 }

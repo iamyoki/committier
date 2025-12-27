@@ -4,6 +4,7 @@ import {
   confirm,
   intro,
   isCancel,
+  log,
   outro,
   select,
   spinner,
@@ -15,12 +16,13 @@ import { AIGenerateUseCase } from "../application/use-cases/ai/ai-generate.use-c
 import { CommitFilesUseCase } from "../application/use-cases/commit-files.use-case.js";
 import { FormatUseCase } from "../application/use-cases/format.use-case.js";
 import { GetCommitFilesUseCase } from "../application/use-cases/get-commit-files.use-case.js";
-import type { CommitFile } from "../domain/commit-file.ts";
 import { AiCommitGenerator } from "../infrastructure/ai-commit-generator.ts";
 import { GitCommitFileRepository } from "../infrastructure/git-commit-file.repository.ts";
 import { Git } from "../infrastructure/git.ts";
 
-export class CommitPrompt {
+export class AiPrompt {
+  private dryRunMode: boolean = false;
+
   constructor(
     private readonly aiGenerateUseCase: AIGenerateUseCase,
     private readonly formatUseCase: FormatUseCase,
@@ -28,19 +30,10 @@ export class CommitPrompt {
     private readonly commitFilesUseCase: CommitFilesUseCase,
   ) {}
 
-  async run(dryRunMode?: boolean) {
+  async run(dryRunMode: boolean = false) {
+    this.dryRunMode = dryRunMode;
     console.clear();
     intro(pc.greenBright("⚡︎ committier ai"));
-
-    const commitableFiles = await this.getCommitFilesUseCase.execute({
-      commitables: true,
-    });
-
-    if (!commitableFiles.length) {
-      this.handleCancel(
-        "No files to commit with, please use `git add ...` to staged some files first",
-      );
-    }
 
     const action = await select({
       message: "Pick an AI action",
@@ -65,19 +58,13 @@ export class CommitPrompt {
         },
       ],
     });
+    if (isCancel(action)) this.handleCancel();
 
     switch (action) {
       case "generate-commit-msg": {
-        await this.generateCommitMsg(commitableFiles);
+        await this.generateCommitMsg();
         break;
       }
-    }
-
-    if (isCancel(action)) this.handleCancel();
-
-    if (dryRunMode) {
-      cancel("Done. (Nothing act due to `--dry-run` mode)");
-      process.exit(0);
     }
 
     outro("Done.");
@@ -88,11 +75,21 @@ export class CommitPrompt {
     process.exit(0);
   }
 
-  private async generateCommitMsg(commitFiles: CommitFile[]) {
+  private async generateCommitMsg() {
+    const commitableFiles = await this.getCommitFilesUseCase.execute({
+      commitables: true,
+    });
+
+    if (!commitableFiles.length)
+      return this.handleCancel(
+        "No files to commit with, please use `git add ...` to staged some files first",
+      );
+
     const userIntent = await text({
       message: "Describe your intent to make AI more accurate (Optional)",
       placeholder: "e.g. feat, fix core",
     });
+    if (isCancel(userIntent)) return this.handleCancel();
 
     const s = spinner({ onCancel: () => this.handleCancel() });
     s.start("Generating");
@@ -106,7 +103,7 @@ export class CommitPrompt {
     const str = `${aiCommitMessage.type}: ${aiCommitMessage.description}\n\n${aiCommitMessage.body?.map((item) => `- ${item}`).join("\n")}`;
     const formatted = await this.formatUseCase.execute({
       rawMessage: str,
-      commitFiles,
+      commitFiles: commitableFiles,
     });
 
     box(formatted, undefined, {
@@ -116,24 +113,21 @@ export class CommitPrompt {
     });
 
     const yes = await confirm({ message: "Commit now?" });
+    if (!yes || isCancel(yes)) return this.handleCancel();
 
-    if (yes) {
-      const s = spinner();
-      s.start("Executing: git commit");
-      try {
-        await this.commitFilesUseCase.execute(
-          formatted,
-          commitFiles.map((f) => f.filePath),
-        );
-      } catch (error) {
-        console.log(error);
-      }
-      s.stop("Done: git commit");
-    } else {
-      this.handleCancel();
+    if (this.dryRunMode)
+      return this.handleCancel("Done. (Nothing act due to `--dry-run` mode)");
+
+    s.start("Executing: git commit");
+    try {
+      await this.commitFilesUseCase.execute(
+        formatted,
+        commitableFiles.map((f) => f.filePath),
+      );
+    } catch (error) {
+      if (error instanceof Error) log.error(error.message);
     }
-
-    if (isCancel(userIntent)) this.handleCancel();
+    s.stop("Done: git commit");
   }
 }
 
@@ -150,7 +144,7 @@ if (import.meta.main) {
   const getCommitFilesUseCase = new GetCommitFilesUseCase(
     gitCommitFileRepository,
   );
-  new CommitPrompt(
+  new AiPrompt(
     aiGenerateUseCase,
     formatUseCase,
     getCommitFilesUseCase,
