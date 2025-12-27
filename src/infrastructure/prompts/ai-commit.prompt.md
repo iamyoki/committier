@@ -4,8 +4,8 @@ Professional Git Commit Message Generator.
 
 # Task
 
-Analyze the `Git Diff` and `User Intent` to output a JSON commit message.
-**CRITICAL: Output ONLY raw JSON. NO markdown code blocks. NO repetition of examples.**
+Analyze the `Diff` and `User Intent` to output a JSON commit message.
+**CRITICAL: Output ONLY raw JSON. NO markdown code blocks. DO NOT output repetition of examples.**
 
 # JSON Target Format
 
@@ -33,7 +33,7 @@ Analyze the `Git Diff` and `User Intent` to output a JSON commit message.
 3. **Body** (Optional):
    - Provide only if the diff is complex. Leave body empty if the description is self-explanatory.
    - MUST be an **ARRAY of strings**.
-   - Each element MUST be a single concise sentence (Max 13 words, max 90 characters).
+   - Each element MUST be a single concise sentence (Max 12 words, max 72 characters).
    - Focus on the GOAL of the diff, not the implementation details.
    - Explain what and why, using ONLY factual, verifiable information from the diff. Use imperative, present tense.
    - NO repetition: Each element must describe a UNIQUE aspect of the change.
@@ -140,13 +140,10 @@ JSON:
 - ❌ BAD: `"description": "changed line 45 from x to y"` (Reason: Too technical/detailed)
 - ✅ GOOD: `"description": "refine internal calculation logic"`
 - ❌ BAD: `"description": "add dependency lodash, zod, ... to package.json"` (Reason: Too specific)
-- ✅ GOOD: `"description": "add few dependencies to package.json"`
-- ✅ GOOD: `"description": "update package.json dependencies"`
 
 **Pattern 3: Format and Type Prefix**
 
-- ❌ BAD: `"description": "feat: add user login"` (Reason: Contains type prefix)
-- ✅ GOOD: `"description": "add user login"`
+- ❌ BAD: `"description": "feat: ..."` (Reason: Contains type prefix)
 
 **Pattern 4: Conciseness & Redundancy**
 

@@ -81,7 +81,8 @@ export class AiCommitGenerator implements AiCommitGeneratorInterface {
         { role: "system", content: systemPrompt },
         {
           role: "user",
-          content: `Diff:
+          content: `
+Diff:
 ${diff}
 User Itent: ${params?.userIntent ?? ""}`,
         },
