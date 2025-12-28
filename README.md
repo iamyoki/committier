@@ -1,4 +1,4 @@
-# <img src=".images/icon-rect.png" alt="icon" height="20px" /> committier
+# <img src=".images/icon-rect.png" alt="icon" height="20px" /> committier - Make your commits PRO with ease
 
 <p align="center">
 
@@ -10,12 +10,14 @@
 </p>
 
 <p align="center">
-  Fix and format commit messages.
+  committier ❤️ commitlint
 </p>
 
 <p align="center">
 <a href="https://iamyoki.github.io/committier/" target="_blank">Check out the website 🔗</a>
 </p>
+
+> **🌟 AI commit generator is now available in Beta (Free, Local, Light, Zero-Deploy, Fast, CPU friendly)**
 
 <p align="center">
   <img width="600" src=".images/demo.gif" alt="demo" />
@@ -23,12 +25,24 @@
 
 ## Features
 
-- UX / DX driven design
-- Adhere conventioanl commits style
-- Compatible with [commitlint](https://github.com/conventional-changelog/commitlint)
+### committier
+
+- Fix and format rough commit messages into [conventioanl commits](<(https://conventionalcommits.org/)>)
+- Adopt [commitlint](https://github.com/conventional-changelog/commitlint)
 - Automatically format once `git commit -m '...'`, see [Git hook setup](#git-hook)
-- Automatically add emojis and is customizable
-- Includes a user-friendly commit CLI tool
+- Automatically append emoji, scope, and default commit messages
+- User-friendly commit CLI tool
+- AI commits generator
+
+### committier ai (Beta)
+
+A completely free, local, light, cpu, zero-deploy AI assitant. Use AI with just one command. No API, no prerequisites and no setup needed.
+
+- ✨ Generate commit message
+- 📝 Summarize changes
+- 🧠 Provide suggestions for improvement
+- 🔍 Find bugs
+- 💬 Ask AI
 
 ## What is committier
 
@@ -60,12 +74,15 @@ Or directly execute
 
 `pnpm dlx committier <command>`
 
+> NOTE: committier ai is now in Beta `pnpm add committier@beta -D`
+
 ## Usage
 
 - CLI
   - [format](#format)
   - [edit](#git-hook)
   - [commit](#commit-cli-tool)
+  - [ai](#ai)
 - [Integrate commitlint](#integrate-commitlint)
 - Module API
   - [FormatUseCase](.)
@@ -102,6 +119,14 @@ npx --no -- commitlint --edit $1
 
 > Note, there is no '--' before 'edit' command in committier but commitlint.
 
+## AI
+
+`committier ai`
+
+![ai](.images/ai.png)
+
+![ai2](.images/ai2.png)
+
 ## Commit CLI Tool
 
 `committier commit`
@@ -119,7 +144,8 @@ Or you can add a script in `package.json`
 ```json
 {
   "scripts": {
-    "commit": "committier commit"
+    "commit": "committier commit",
+    "commit:ai": "committier ai"
   }
 }
 ```

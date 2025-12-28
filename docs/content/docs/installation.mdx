@@ -41,12 +41,15 @@ pnpm add committier -D
 bun add committier -d
 ```
 
+<Callout>AI is now in Beta, install via `pnpm add committier@beta -D`</Callout>
+
 Optionally add a script in `package.json`, to map a shorter command for commit CLI
 
 ```json
 {
   "scripts": {
-    "commit": "committier commit"
+    "commit": "committier commit",
+    "commit:ai": "committier ai"
   }
 }
 ```

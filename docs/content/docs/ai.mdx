@@ -1,0 +1,78 @@
+---
+title: AI
+description: A built-in AI assistant.
+icon: Bot
+---
+
+
+## Features
+
+![ai](/ai.png)
+
+A completely free, local, light, cpu, zero-deploy AI assitant. Use AI with just one command. No API, no prerequisites and no setup needed.
+
+- ✨ Generate commit message
+- 📝 Summarize changes
+- 🧠 Provide suggestions for improvement
+- 🔍 Find bugs
+- 💬 Ask AI
+
+## Usage
+
+```sh
+pnpm committier ai
+```
+
+Optionally add a script in `package.json`, to map a shorter command for commit CLI
+
+```json
+{
+  "scripts": {
+    "commit": "committier commit",
+    "commit:ai": "committier ai"
+  }
+}
+```
+
+Then
+
+```sh
+pnpm commit:ai
+```
+
+## About Model
+
+The first run will automatically install a lightweight model of approximately 800MB and cache it globally to avoid redundant installations.
+
+> The cache dir is `~/.committier/models`
+
+|Model|Size|CPU|GPU
+|-|-|-|-|
+|Qwen2.5-Coder-0.5B-Instruct|862.1MB|✅|✅|
+
+## ✨ Generate Commit Messages
+![ai2](/ai2.png)
+
+## 📝 Summarize Changes
+
+> Coming soon...
+
+## 🧠 Provide Suggestions for Improvement
+
+> Coming soon...
+
+## 🔍 Find Bugs
+
+> Coming soon...
+
+## 💬 Ask AI
+
+> Coming soon...
+
+## Test with `dry-run` Mode
+
+It's useful if you only want to test the commit experience.
+
+```sh
+pnpm committier ai --dry-run
+```
