@@ -4,11 +4,19 @@ import type { AiCommitGeneratorInterface } from "../../interfaces/ai-commit-gene
 export class AIGenerateUseCase {
   constructor(private readonly aiCommitGenerator: AiCommitGeneratorInterface) {}
 
-  async execute(userIntent?: string, _diff?: string): Promise<AiCommitMessage> {
-    const aiCommitMessage = await this.aiCommitGenerator.execute({
-      userIntent,
-      _diff,
-    });
+  async execute(params?: {
+    userIntent?: string | undefined;
+    _diff?: string | undefined;
+    onModelDownloadStart?: () => void;
+    onModelDownloading?: (info: {
+      file: string;
+      MBSize: number;
+      progress: number;
+    }) => void;
+    onModelDownloadEnd?: () => void;
+    onTransformersInstall?: () => void;
+  }): Promise<AiCommitMessage> {
+    const aiCommitMessage = await this.aiCommitGenerator.execute(params);
     return aiCommitMessage;
   }
 }

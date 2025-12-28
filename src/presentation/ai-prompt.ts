@@ -94,9 +94,18 @@ export class AiPrompt {
     const s = spinner({ onCancel: () => this.handleCancel() });
     s.start("Generating");
 
-    const aiCommitMessage = await this.aiGenerateUseCase.execute(
-      userIntent.toString(),
-    );
+    const aiCommitMessage = await this.aiGenerateUseCase.execute({
+      userIntent: userIntent.toString(),
+      onModelDownloadStart() {
+        s.message("Downloading AI model");
+      },
+      onModelDownloading(info) {
+        s.message(`Downloading AI model - ${info.MBSize}MB ${info.progress}%`);
+      },
+      onModelDownloadEnd() {
+        s.message(`Generating`);
+      },
+    });
 
     s.stop("Generated commit message");
 
