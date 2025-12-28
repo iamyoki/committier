@@ -96,7 +96,7 @@ jobs:
       - name: Get tag
         id: tag
         run: |
-          TAG_NAME=$(git describe --tags --exact-match)
+          TAG_NAME=$(git describe --tags --exact-match || echo "")
           echo TAG_NAME=$TAG_NAME >> $GITHUB_OUTPUT
 
       - name: Upload release assets
