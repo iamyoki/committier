@@ -105,8 +105,8 @@ User Itent: ${params?.userIntent ?? ""}`,
 
     const aiCommitMessage = AiCommitMessage.create(
       json.type,
-      json.description,
-      json.body,
+      json.subject,
+      json.bullets,
     );
 
     return aiCommitMessage;
@@ -209,7 +209,7 @@ User Itent: ${params?.userIntent ?? ""}`,
 
   private async getSystemPrompt(): Promise<string> {
     return await readFile(
-      path.join(import.meta.dirname, "./prompts/ai-commit.prompt.md"),
+      path.join(import.meta.dirname, "./prompts/ai-commit.prompt.v2.md"),
       "utf8",
     );
   }

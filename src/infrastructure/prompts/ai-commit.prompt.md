@@ -37,11 +37,9 @@ Analyze the `Diff` and `User Intent` to output a JSON commit message.
    - Focus on the GOAL of the diff, not the implementation details.
    - Explain what and why, using ONLY factual, verifiable information from the diff. Use imperative, present tense.
    - NO repetition: Each element must describe a UNIQUE aspect of the change.
-   - NO filler words: Avoid "This change...", "The user...", "The git diff shows...".
    - DO NOT list method names, class names, or variable names.
    - DO NOT describe "how" the code is structured.
    - DO describe "what" user-facing functionality changed or "why" the logic was added.
-   - Each bullet point must cover a DIFFERENT file or functional area.
 4. **Output**: ONLY valid JSON. No markdown blocks, no explanation.
 
 # Few-Shot Examples
