@@ -1,3 +1,20 @@
+## 0.3.0-beta.1 (2025-12-28)
+
+### 🩹 Fixes
+
+- ai worker ([65b4766](https://github.com/iamyoki/committier/commit/65b4766))
+
+### 🤖 CI
+
+- fix pack filename issue ([9f0c5b4](https://github.com/iamyoki/committier/commit/9f0c5b4))
+- fix pack filename issue ([70d3f17](https://github.com/iamyoki/committier/commit/70d3f17))
+- fix npm publish ([17ac997](https://github.com/iamyoki/committier/commit/17ac997))
+- fix npm publish ([68481df](https://github.com/iamyoki/committier/commit/68481df))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.3.0-beta.0 (2025-12-28)
 
 ### 🚀 Features
