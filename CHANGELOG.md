@@ -1,3 +1,30 @@
+## 0.3.0-beta.0 (2025-12-28)
+
+### 🚀 Features
+
+- add ai commit generator ([c146793](https://github.com/iamyoki/committier/commit/c146793))
+- add AI commit message generator functionality ([85da48b](https://github.com/iamyoki/committier/commit/85da48b))
+- implement AI cli ([c7ddfde](https://github.com/iamyoki/committier/commit/c7ddfde))
+- add v2 prompt ([4020fd7](https://github.com/iamyoki/committier/commit/4020fd7))
+- add downloading model indicator ([f0cd909](https://github.com/iamyoki/committier/commit/f0cd909))
+
+### 🩹 Fixes
+
+- emoji parsing error ([694d4b7](https://github.com/iamyoki/committier/commit/694d4b7))
+- ai prompt ([60c1188](https://github.com/iamyoki/committier/commit/60c1188))
+
+### 🏡 Chore
+
+- clear code ([fe762db](https://github.com/iamyoki/committier/commit/fe762db))
+
+### 🤖 CI
+
+- add release-beta workflow ([d94ddc2](https://github.com/iamyoki/committier/commit/d94ddc2))
+
+### ❤️ Thank You
+
+- Yoki @iamyoki
+
 ## 0.2.3 (2025-12-22)
 
 ### 🩹 Fixes
