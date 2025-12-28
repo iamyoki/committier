@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - beta
     paths-ignore:
       - docs/**
 
@@ -63,6 +64,7 @@ jobs:
         shell: bash
 
       - name: Release
+        if: ${{ github.ref_name == 'main' }}
         run: npx nx release --skip-publish
         shell: bash
         env:
@@ -70,6 +72,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to github packages
+        if: ${{ github.ref_name == 'main' }}
         run: |
           pnpm pkg set name=@iamyoki/committier
           npx nx release publish
@@ -79,9 +82,38 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm packages
+        if: ${{ github.ref_name == 'main' }}
         run: |
           pnpm pkg set name=committier
           pnpm publish --provenance --access public --registry https://registry.npmjs.org/
+        shell: bash
+        continue-on-error: true
+        env:
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Release (Beta)
+        if: ${{ github.ref_name == 'beta' }}
+        run: npx nx release --preid beta --skip-publish
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to github packages (Beta)
+        if: ${{ github.ref_name == 'beta' }}
+        run: |
+          pnpm pkg set name=@iamyoki/committier
+          npx nx release publish --tag beta
+          pnpm pkg set name=committier
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm packages (Beta)
+        if: ${{ github.ref_name == 'beta' }}
+        run: |
+          pnpm pkg set name=committier
+          pnpm publish --provenance --access public --no-git-checks --tag beta --registry https://registry.npmjs.org/
         shell: bash
         continue-on-error: true
         env:
