@@ -58,9 +58,6 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Pack
-        run: pnpm pack
-
       - name: Print Environment Info
         run: npx nx report
         shell: bash
@@ -90,10 +87,13 @@ jobs:
         env:
           NPM_CONFIG_PROVENANCE: true
 
+      - name: Pack
+        run: pnpm pack
+
       - name: Get tag
         id: tag
         run: |
-          TAG_NAME=$(git tag --sort=v:refname | tail -1)
+          TAG_NAME=$(git describe --tags --exact-match)
           echo TAG_NAME=$TAG_NAME >> $GITHUB_OUTPUT
 
       - name: Upload release assets
