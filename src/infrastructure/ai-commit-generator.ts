@@ -209,7 +209,7 @@ User Itent: ${params?.userIntent ?? ""}`,
 
   private async getSystemPrompt(): Promise<string> {
     return await readFile(
-      path.join(import.meta.dirname, "./prompts/ai-commit.prompt.v2.md"),
+      path.join(import.meta.dirname, "../../prompts/ai-commit.prompt.v2.md"),
       "utf8",
     );
   }
